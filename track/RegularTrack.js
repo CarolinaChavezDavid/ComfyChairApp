@@ -3,7 +3,7 @@ const Track = require("./Track");
 class RegularTrack extends Track {
 
     getType() {
-        return 'Regular';
+        return 'regular';
     }
 }
 

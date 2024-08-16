@@ -4,15 +4,15 @@ class Track {
         this.deadline = deadline;
         this.acceptanceMethod = acceptanceMethod;
         this.articles = [];
-        this.users = users
+        this.users = users;
         this.state = 'reception';
       }
     
       submitArticle(article) {
-        if (this.state !== 'reception') {
-          throw new Error("El tiempo de recepción de articulos ha terminado");
-        }
-        this.articles.push(article);
+        if (article.getType() !== this.getType()) {
+          throw new Error(`El tipo de la publicación es incorrecto. Esperado: ${this.getType()}, Enviado: ${article.getType()}`);
+      }
+      this.articles.push(article);
       }
 
       getType() {

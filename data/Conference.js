@@ -8,20 +8,20 @@ class Conference {
         this.tracks = []
     }
 
-    createTrack(topic, deadline, acceptanceMethod){
-         const newTrack = Track(topic, deadline, acceptanceMethod)
-         this.tracks.push(newTrack)
+    createTrack(track){
+         this.tracks.push(track)
     }
 
-    addUser(user){
+    registerUser(user){
         this.users.push(user)
     }
 
     getConferenceInfo(){
-        console.log(`${this.field} conference, ID ${this.id}, usuarios: ${this.users.length}`);
+        console.log(`Conferencia: ${this.field}, ID ${this.id}, usuarios: ${this.users.length}, sesiones: ${this.tracks}`);
     }
 
     createTrack(type, topic, deadline, acceptanceMethod, user) {
+        console.log(user.hasRole('chair'))
         if (!user.hasRole('chair')) {
             throw new Error('Solo los organizadores pueden crear sesiones.');
         }
@@ -38,14 +38,10 @@ class Conference {
                 track = new PosterTrack(topic, deadline, acceptanceMethod);
                 break;
             default:
-                throw new Error('Invalid track type.');
+                throw new Error('Tipo de sesión invalido.');
         }
 
         this.tracks.push(track);
-    }
-
-    getConferenceInfo(){
-        return `Conference ID: ${this.id}\nField: ${this.field}\nNumber of Users: ${this.users.length}\nNumber of Tracks: ${this.tracks.length}`;
     }
 }
 

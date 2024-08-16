@@ -20,8 +20,7 @@ class User {
         return Array.from(this.roles);
       }
 
-    
-      hasRole(role) {
+    hasRole(role) {
         return this.roles.has(role);
     }
 

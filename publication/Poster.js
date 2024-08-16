@@ -7,7 +7,7 @@ class Poster extends Publication {
     }
 
     getType() {
-        return 'Poster';
+        return 'poster';
     }
 
   }
