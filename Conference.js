@@ -1,27 +1,35 @@
-const User = require('../track/Track');
+const PosterTrack = require('./track/PosterTrack');
+const RegularTrack = require('./track/RegularTrack');
+const User = require('./track/Track');
+const WorkshopTrack = require('./track/WorkshopTrack');
 
 class Conference {
-    constructor(field){
+    constructor(field) {
         this.id = Math.floor(Math.random() * 1000000)
         this.field = field
         this.users = []
         this.tracks = []
     }
 
-    createTrack(track){
-         this.tracks.push(track)
+    createTrack(track) {
+        this.tracks.push(track)
     }
 
-    registerUser(user){
+    registerUser(user) {
         this.users.push(user)
     }
 
-    getConferenceInfo(){
-        console.log(`Conferencia: ${this.field}, ID ${this.id}, usuarios: ${this.users.length}, sesiones: ${this.tracks}`);
+    getConferenceInfo() {
+        console.log(`Conferencia: ${this.field}, ID ${this.id}, usuarios: ${this.users.length}, sesiones: ${this.tracks.length}`);
+    }
+
+    getTracksInfo() {
+        this.tracks.forEach((item) => {
+            item.getTrackInfo()
+        })
     }
 
     createTrack(type, topic, deadline, acceptanceMethod, user) {
-        console.log(user.hasRole('chair'))
         if (!user.hasRole('chair')) {
             throw new Error('Solo los organizadores pueden crear sesiones.');
         }

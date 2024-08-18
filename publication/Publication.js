@@ -1,8 +1,9 @@
 class Publication {
-    constructor(title, attachedFile, inChargedAuthor, sendDate) {
+    constructor(title, attachedFile, leadAuthor) {
       this.title = title;
       this.attachedFile = attachedFile;
-      this.inChargedAuthor = inChargedAuthor;
+      this.authors = []
+      this.leadAuthor = leadAuthor;
       this.state = 'inReview';
       this.sendDate = sendDate;
     }
