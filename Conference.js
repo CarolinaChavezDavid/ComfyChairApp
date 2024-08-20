@@ -25,7 +25,7 @@ class Conference {
 
     getTracksInfo() {
         this.tracks.forEach((item) => {
-            item.getTrackInfo()
+           console.log(item)
         })
     }
 

@@ -8,7 +8,9 @@ const Publication = require('../publication/Publication');
 class TestDataFactory {
 
     static createUserCarolina() {
-        return new User('Carolina', 'Chavez', 'scchavezd@gmail.com', 'password123', 'UNLP');
+        const user = new User('Carolina', 'Chavez', 'scchavezd@gmail.com', 'password123', 'UNLP');
+        user.addRole('author'); 
+        return user
     }
 
     static createUserFer() {
