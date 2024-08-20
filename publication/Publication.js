@@ -1,5 +1,5 @@
 class Publication {
-    constructor(title, attachedFile, leadAuthor) {
+    constructor(title, attachedFile, leadAuthor, sendDate) {
       this.title = title;
       this.attachedFile = attachedFile;
       this.authors = []
