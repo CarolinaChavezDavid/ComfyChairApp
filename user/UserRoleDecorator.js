@@ -1,5 +1,8 @@
-class UserRoleDecorator {
+const User = require("./User");
+
+class UserRoleDecorator extends User{
     constructor(user) {
+      super(user.name, user.lastName, user.email, user.password, user.membership)
       this.user = user;
     }
   
@@ -9,10 +12,14 @@ class UserRoleDecorator {
   
     removeRole(role) {
       this.user.removeRole(role);
-    }
+    }   
   
     getRoles() {
       return this.user.getRoles();
+    }
+
+    hasRole(role) {
+        return this.user.hasRole(role);
     }
   
     getUserInfo() {
