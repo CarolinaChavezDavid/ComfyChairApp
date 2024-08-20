@@ -6,13 +6,13 @@ describe('Clase Publicación', () => {
     let publicacion;
 
     beforeEach(() => {
-        publicacion = new Publication('Título de ejemplo', 'archivo.pdf', 'Nombre del autor');
+        publicacion = new Publication('Título de ejemplo', 'archivo.pdf', 'Fernando Corinaldesi');
     });
 
     test('debería inicializarse con las propiedades correctas', () => {
         expect(publicacion.title).toBe('Título de ejemplo');
         expect(publicacion.attachedFile).toBe('archivo.pdf');
-        expect(publicacion.leadAuthor).toBe('Nombre del autor');
+        expect(publicacion.leadAuthor).toBe('Fernando Corinaldesi');
         expect(publicacion.state).toBe('inReview');
         expect(publicacion.authors).toEqual([]);
     });
@@ -31,7 +31,7 @@ describe('Clase Póster', () => {
     let poster;
 
     beforeEach(() => {
-        poster = new Poster('Póster de ejemplo', 'poster.pdf', 'Nombre del autor', '2023-01-01', ['Fuente1', 'Fuente2']);
+        poster = new Poster('Póster de ejemplo', 'poster.pdf', 'Fernando Corinaldesi', '2024-08-20', ['Fuente1', 'Fuente2']);
     });
 
     test('debería retornar "poster" como tipo', () => {
@@ -47,7 +47,7 @@ describe('Clase Regular', () => {
     let regular;
 
     beforeEach(() => {
-        regular = new Regular('Artículo Regular de ejemplo', 'regular.pdf', 'Nombre del autor', '2023-01-01', 'Resumen de ejemplo');
+        regular = new Regular('Artículo Regular de ejemplo', 'regular.pdf', 'Fernando Corinaldesi', '2024-08-20', 'Resumen de ejemplo');
     });
 
     test('debería retornar "regular" como tipo', () => {
