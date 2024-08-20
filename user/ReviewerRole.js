@@ -3,7 +3,7 @@ const UserRoleDecorator = require('./UserRoleDecorator');
 class ReviewerRole extends UserRoleDecorator {
     constructor(user) {
       super(user);
-      this.addRole('reviewer');
+      super.addRole('reviewer');
     }
   
     reviewArticle(article) {

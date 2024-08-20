@@ -19,6 +19,10 @@ class Track {
         throw new Error("El método 'getType()' debe ser implementado.");
       }
 
+      getTrackInfo(){
+        console.log(`Sesión de ${this.topic}, articulos presentados: ${this.articles.length}, usuarios registrados: ${this.users}`)
+      }
+
       submitPublication(publication) {
         throw new Error("El método 'submitPublication()' debe ser implementado.");
       }

@@ -6,6 +6,11 @@ class WorkshopTrack extends Track {
         return 'workshop';
     }
 
+    getTrackInfo() {
+        super.getTrackInfo()
+        console.log(`Tipo: ${this.getType()}`)
+    }
+
     submitArticle(article) {
         if (article.getType() == "poster" || article.getType() == "regular") {
             this.articles.push(article);
@@ -17,4 +22,4 @@ class WorkshopTrack extends Track {
 
 }
 
-module.exports = RegularTrack;
+module.exports = WorkshopTrack;
