@@ -17,3 +17,5 @@ class ComfyChairApp {
     }
 
 }  
+
+module.exports = ComfyChairApp;
