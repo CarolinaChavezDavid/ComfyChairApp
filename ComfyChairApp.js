@@ -1,4 +1,5 @@
 const User = require('./user/User');
+const Conference = require('./Conference')
 
 class ComfyChairApp {
     constructor(){
@@ -11,8 +12,8 @@ class ComfyChairApp {
             this.users.push(newUser)
     }
 
-    createConference(){
-        const newConference = newConference()
+    createConference(field){
+        const newConference = new Conference(field)
         this.conferences.push(newConference)
     }
 
