@@ -1,12 +1,14 @@
 const Publication = require('../publication/Publication');
 const Poster = require('../publication/Poster');
 const Regular = require('../publication/Regular');
+const TestDataFactory = require('./testDataFactory');
+
 
 describe('Clase Publicación', () => {
     let publicacion;
 
     beforeEach(() => {
-        publicacion = new Publication('Título de ejemplo', 'archivo.pdf', 'Fernando Corinaldesi');
+        publicacion = TestDataFactory.createPublicationExample1();
     });
 
     test('debería inicializarse con las propiedades correctas', () => {
