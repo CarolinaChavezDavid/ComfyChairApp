@@ -15,6 +15,31 @@ class Conference {
         this.tracks.push(track)
     }
 
+    submitPublicationToTrack(topic, publication, user){
+        const track = this.findTrack(topic);
+        if (!track) {
+            throw new Error(`La sesion "${trackName}" no fue encontrada en la conferencia "${this.field}".`);
+        }
+        if(!this.isUserRegistered(user)){
+            this.users.push(user)
+        }
+
+        track.submitPublication(publication, user)
+    }
+
+    isUserRegistered(user) {
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].email === user.email) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    findTrack(topic) {
+        return this.tracks.find(track => track.topic.toLowerCase() === topic.toLowerCase());
+    }
+
     registerUser(user) {
         this.users.push(user)
     }

@@ -6,11 +6,9 @@ class RegularTrack extends Track {
         return 'regular';
     }
 
-    getTrackInfo() {
-        super.getTrackInfo()
-        console.log(`Tipo: ${this.getType()}`)
+    isPublicationAvailableType(publicationType) {
+        return (publicationType === 'regular')
     }
-
 }
 
-module.exports = RegularTrack;
+module.exports = RegularTrack;  

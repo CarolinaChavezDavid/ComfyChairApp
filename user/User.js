@@ -14,7 +14,7 @@ class User {
 
     removeRole(role) {
         this.roles.delete(role);
-      }
+      } 
     
     getRoles() {
         return Array.from(this.roles);

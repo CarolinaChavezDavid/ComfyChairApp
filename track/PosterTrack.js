@@ -5,10 +5,9 @@ class PosterTrack extends Track {
     getType() {
         return 'poster';
     }
-    
-    getTrackInfo() {
-        super.getTrackInfo()
-        console.log(`Tipo: ${this.getType()}`)
+
+    isPublicationAvailableType(publicationType) {
+        return (publicationType === 'regular' || publicationType === 'poster')
     }
 
 }
