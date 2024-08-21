@@ -10,7 +10,7 @@ class Track {
     
       submitArticle(article) {
         if (article.getType() !== this.getType()) {
-          throw new Error(`El tipo de la publicación es incorrecto. Esperado: ${this.getType()}, Enviado: ${article.getType()}`);
+          throw new Error(`El tipo de la publicación es incorrecto`);
       }
       this.articles.push(article);
       }
@@ -20,7 +20,7 @@ class Track {
       }
 
       getTrackInfo(){
-        console.log(`Sesión de ${this.topic}, articulos presentados: ${this.articles.length}, usuarios registrados: ${this.users}`)
+        return `Sesión de ${this.topic}, articulos presentados: ${this.articles.length}`;
       }
 
       submitPublication(publication) {
