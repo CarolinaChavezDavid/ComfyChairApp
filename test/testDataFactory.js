@@ -4,6 +4,9 @@ const RegularTrack = require('../track/RegularTrack');
 const WorkshopTrack = require('../track/WorkshopTrack');
 const PosterTrack = require('../track/PosterTrack');
 const Publication = require('../publication/Publication');
+const Regular = require('../publication/Regular');
+const Poster = require('../publication/Poster');
+
 
 class TestDataFactory {
 
@@ -45,6 +48,12 @@ class TestDataFactory {
     static createPublicationExample1() {
         return new Publication('Título de ejemplo', 'archivo.pdf', 'Fernando Corinaldesi');
     }
+    static createRegularPublicationExample1() {
+        return new Regular('AI Basics', 'http://file.url', 'Author1', '2024-08-20', 'An abstract');
+    }
+    static createPosterPublicationExample1() {
+        return new Poster('Big Data Insights', 'http://file.url', 'Author2', '2024-08-20', 'http://sources.url');
+    }
 }
-
+                
 module.exports = TestDataFactory;
