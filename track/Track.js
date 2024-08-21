@@ -10,14 +10,9 @@ class Track {
     this.users = []
 
 
-    this.receptionState = new ReceptionState()
-    this.biddingState = new BiddingState()
+    this.receptionState = new ReceptionState(this, deadline)
+    this.biddingState = new BiddingState(this, 6000)
     this.currentState = this.receptionState
-
-    setTimeout(() => {
-      this.setState(this.biddingState);
-      console.log(`La sesion "${this.topic}" ha pasado al estado de biddnig.`);
-  }, deadline);
   }
 
   setState(state) {

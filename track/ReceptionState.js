@@ -2,6 +2,15 @@ const TrackState = require("./TrackState");
 
 class ReceptionState extends TrackState {
 
+    constructor(track, deadline){
+        super(track)
+        this.deadline = deadline
+        setTimeout(() => {
+            track.setState(track.biddingState);
+            console.log(`La sesion "${this.track.topic}" ha pasado al estado de biddnig, los revisores podran enviar bids.`);
+        }, this.deadline);
+    }
+
     submitPulication(publication) {
         publication.updateState('inReview')
         if (this.isNullOrEmpty(publication.title)) {
