@@ -6,6 +6,7 @@ class User {
         this.password = password;
         this.membership = membership
         this.roles = new Set();
+
     }
 
     addRole(role) {

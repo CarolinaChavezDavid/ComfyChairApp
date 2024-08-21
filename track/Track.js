@@ -54,6 +54,20 @@ class Track {
     throw new Error("El método 'isPublicationAvailableType()' debe ser implementado.");
   }
 
+  notifyReviwers(){
+    this.removeRejectedArticles()
+    
+  }
+
+  removeRejectedArticles() {
+    for (let i = 0; i < this.articles.length; i++) {
+        if (this.articles[i].state === 'rejected') {
+            this.articles.splice(i, 1);
+            i--;
+        }
+    }
+}
+
   getTrackInfo() {
     console.log(`Sesión de ${this.topic} de tipo ${this.getType()}, articulos presentados: ${this.publications.length}, usuarios registrados: ${this.users}`)
   }

@@ -7,6 +7,10 @@ class ReviewerRole extends UserRoleDecorator {
     this.bids = []
   }
 
+  updateBidingState(publications){
+    
+  }
+
   reviewArticle(article) {
     console.log(`${this.user.name} reviewed article: ${article}`)
   }
