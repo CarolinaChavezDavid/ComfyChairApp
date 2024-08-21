@@ -1,4 +1,8 @@
 const Track = require("./Track");
+const Poster = require('../publication/Poster')
+const Regular = require('../publication/Regular')
+
+
 
 class WorkshopTrack extends Track {
 
@@ -7,17 +11,15 @@ class WorkshopTrack extends Track {
     }
 
     getTrackInfo() {
-        super.getTrackInfo()
-        console.log(`Tipo: ${this.getType()}`)
+        return `${super.getTrackInfo()}, Tipo: ${this.getType()}`;
+
     }
 
     submitArticle(article) {
-        if (article.getType() == "poster" || article.getType() == "regular") {
-            this.articles.push(article);
-
-        } else {
-            throw new Error(`El tipo de la publicación es incorrecto. Esperado: Poster o Regular, Enviado: ${article.getType()}`);
+        if (!(article instanceof Regular || article instanceof Poster)) {
+            throw new Error(`El tipo de la publicación es incorrecto. Esperado: regular o poster, Enviado: ${article.getType()}`);
         }
+        super.submitArticle(article);
     }
 
 }
