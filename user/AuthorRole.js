@@ -5,11 +5,7 @@ class AuthorRole extends UserRoleDecorator {
       super(user);
       this.addRole('author');
     }
-  
-    submitArticle(article) {
-      console.log(`${this.user.name} submitted article: ${article}`);
-    }
-  
+
     getUserInfo() {
       super.getUserInfo();
       console.log(`${this.user.name} puede enviar articulos.`);

@@ -2,16 +2,15 @@ const BiddingState = require("./BiddingState");
 const ReceptionState = require("./ReceptionState");
 
 class Track {
-  constructor(topic, deadline, acceptanceMethod) {
+  constructor(topic, deadline, acceptanceMethod, users) {
     this.topic = topic
     this.deadline = deadline
     this.acceptanceMethod = acceptanceMethod
     this.publications = []
-    this.users = []
-
+    this.users = users
 
     this.receptionState = new ReceptionState(this, deadline)
-    this.biddingState = new BiddingState(this, 6000)
+    this.biddingState = new BiddingState(this, 12000)
     this.currentState = this.receptionState
   }
 
@@ -19,7 +18,12 @@ class Track {
     this.currentState = state;
   }
 
-  submitPublication(publication, user) {
+  getReviewers() {
+    const reviewers = this.users.filter(user => user.hasRole('reviewer'));
+    return reviewers;
+}
+
+  submitPublication(publication) {
     if (!(this.currentState instanceof ReceptionState)) {
       throw new Error('Solo se puede enviar publicacion en la etapa de recepcion.');
     }
@@ -30,20 +34,7 @@ class Track {
     this.currentState.submitPulication(publication)
     if (publication.state == 'inReview') {
       this.publications.push(publication);
-      if (!this.isUserRegistered(user)) {
-        this.users.push(user)
-      }
     }
-
-  }
-
-  isUserRegistered(user) {
-    for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].email === user.email) {
-        return true;
-      }
-    }
-    return false;
   }
 
   getType() {
@@ -54,22 +45,22 @@ class Track {
     throw new Error("El método 'isPublicationAvailableType()' debe ser implementado.");
   }
 
-  notifyReviwers(){
-    this.removeRejectedArticles()
-    
+  notifyReviwers() {
+    this.getReviewers().forEach(reviewer => {
+      reviewer.updateBidingState(this.publications)
+    });
   }
 
-  removeRejectedArticles() {
-    for (let i = 0; i < this.articles.length; i++) {
-        if (this.articles[i].state === 'rejected') {
-            this.articles.splice(i, 1);
-            i--;
+  removeRejectedPublications() {
+    this.publications.forEach( (publication, index) => {
+        if (publication.state === 'rejected') {
+            this.publications.splice(index, 1);
         }
-    }
+    });
 }
 
   getTrackInfo() {
-    console.log(`Sesión de ${this.topic} de tipo ${this.getType()}, articulos presentados: ${this.publications.length}, usuarios registrados: ${this.users}`)
+    console.log(`Sesión de ${this.topic} de tipo ${this.getType()}, articulos presentados: ${this.publications.length}, usuarios registrados: ${this.users.length}`)
   }
 
 }

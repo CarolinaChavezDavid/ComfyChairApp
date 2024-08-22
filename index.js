@@ -9,28 +9,91 @@ const ReviewerRole = require('./user/ReviewerRole');
 const User = require('./user/User');
 
 
-let caro = new User('Carolina', 'Chavez', 'scchavezd@gmail.com', 'password123', 'UNLP');
-let AIconference = new Conference('Artifitial Intelligence');
-caro = new ReviewerRole(caro)
-caro = new ChairRole(caro)
+let caroUser = new User('Carolina', 'Chavez', 'scchavezd@gmail.com', 'password123', 'UNLP')
+let ferUser = new User('Fernando', 'Corinaldesi', 'fernando@gmail.com', 'password123', 'UNLP')
+let user1 = new User('Miguel', 'Rodríguez', 'miguel.rodriguez@gmail.com', 'password107', 'UNSAM')
+let user2 = new User('Juan', 'González', 'juan.gonzalez@gmail.com', 'password456', 'UBA')
+let user3 = new User('María', 'López', 'maria.lopez@gmail.com', 'password789', 'UTN')
+let user4 = new User('Carlos', 'Pérez', 'carlos.perez@gmail.com', 'password101', 'UCA')
+let user5 = new User('Ana', 'Martínez', 'ana.martinez@gmail.com', 'password102', 'UNSAM')
+let user6 = new User('Luis', 'Fernández', 'luis.fernandez@gmail.com', 'password103', 'UNLP')
+let user7 = new User('Laura', 'Sánchez', 'laura.sanchez@gmail.com', 'password104', 'UBA')
+let user8 = new User('Diego', 'Gómez', 'diego.gomez@gmail.com', 'password105', 'UTN')
+let user9 = new User('Sofía', 'Díaz', 'sofia.diaz@gmail.com', 'password106', 'UCA')
 
-caro.getUserInfo()
+let AIconference = new Conference('Artifitial Intelligence')
+caroUser = new ReviewerRole(caroUser)
+caroUser = new ChairRole(caroUser)
+user1 = new ReviewerRole(user1)
+user2 = new ReviewerRole(user2)
+user3 = new ReviewerRole(user3)
+user4 = new ReviewerRole(user4)
+user5 = new ReviewerRole(user5)
+
+AIconference.registerUser(caroUser)
+AIconference.registerUser(user1)
+AIconference.registerUser(user2)
+AIconference.registerUser(user3)
+AIconference.registerUser(user4)
+AIconference.registerUser(user5)
+AIconference.registerUser(user6)
+AIconference.registerUser(user7)
+AIconference.registerUser(user8)
+AIconference.registerUser(user9)
+
+AIconference.createTrack("regular", "Machine learning", 3000, 3000, caroUser)
+
+const posterAIPublication = new PosterPublication('IA en la salud', 'www.somewhere.com', caroUser)
+const regularAIPublication = new RegularPublication(
+    'La etica en la IA',
+    'www.somewhere.com',
+    caroUser,
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+)
+const regularAIPublication1 = new RegularPublication(
+    'La ética en la IA',
+    'www.somewhere.com',
+    user6,
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+);
+
+const regularAIPublication2 = new RegularPublication(
+    'Impacto de la IA en la sociedad',
+    'www.somewhere.com',
+    user7,
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+);
+
+const regularAIPublication3 = new RegularPublication(
+    'Avances en el aprendizaje automático',
+    'www.somewhere.com',
+    user8,
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+);
+
+const regularAIPublication4 = new RegularPublication(
+    'Desafíos éticos de la IA',
+    'www.somewhere.com',
+    user9,
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+);
 
 
-AIconference.registerUser(caro)
-AIconference.createTrack("regular", "Machine learning", 3000, 3000, caro)
-AIconference.getConferenceInfo()
-AIconference.getTracksInfo()
+const regularAIPublicationError = new RegularPublication(
+    'IA en la contabilidad',
+    'www.somewhere.com',
+    user9,
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+);
+
+AIconference.submitPublicationToTrack('Machine learning', regularAIPublication, caroUser)
+AIconference.submitPublicationToTrack('Machine learning', regularAIPublication1, user6)
+AIconference.submitPublicationToTrack('Machine learning', regularAIPublication2, user7)
+AIconference.submitPublicationToTrack('Machine learning', regularAIPublication3, user8)
+AIconference.submitPublicationToTrack('Machine learning', regularAIPublication4, user9)
+AIconference.submitPublicationToTrack('Machine learning', regularAIPublicationError, user9)
 
 
-const posterAIPublication = new PosterPublication('IA en la salud', 'www.somewhere.com', caro)
-const regularAIPublication = new RegularPublication('La etica en la IA', 'www.somewhere.com', caro, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.')
-posterAIPublication.getPublicationInfo()
-
-AIconference.submitPublicationToTrack('Machine learning', regularAIPublication, caro)
-
-AIconference.getTracksInfo()
-regularAIPublication.getPublicationInfo()
 
 
 
