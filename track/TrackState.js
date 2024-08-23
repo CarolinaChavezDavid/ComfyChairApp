@@ -3,8 +3,12 @@ class TrackState{
     constructor(track) {
         this.track = track;
     }
-    
+
     submitPulication(publication) {
+        throw new Error('Este metodo debe ser implementado');
+    }
+
+    submitBid(publication, interestLevel, reviewer) {
         throw new Error('Este metodo debe ser implementado');
     }
     

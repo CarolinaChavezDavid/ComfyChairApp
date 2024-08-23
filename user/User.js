@@ -5,18 +5,23 @@ class User {
     this.email = email;
     this.password = password;
     this.membership = membership
-    this.roles = new Set();
+    this.roles = [];
+
+    this.state = 'receptionState'
 
   }
 
 
-  updateBidingState(publications){
+  updateBidingState(publications) {
+    this.state = 'binddingState'
     console.log(`El revisor ${this.user.name}, podra enviar bids a las siguientes publicaciones: ${Array.from(publications).join(', ')}`)
   }
 
 
   addRole(role) {
-    this.roles.add(role);
+    if (!this.roles.includes(role)) {
+      this.roles.push(role);
+    }
   }
 
   removeRole(role) {
@@ -28,7 +33,7 @@ class User {
   }
 
   hasRole(role) {
-    return this.roles.has(role);
+    return this.roles.includes(role);
   }
 
   getUserInfo() {

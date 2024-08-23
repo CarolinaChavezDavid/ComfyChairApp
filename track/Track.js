@@ -2,12 +2,12 @@ const BiddingState = require("./BiddingState");
 const ReceptionState = require("./ReceptionState");
 
 class Track {
-  constructor(topic, deadline, acceptanceMethod, users) {
+  constructor(topic, deadline, acceptanceMethod) {
     this.topic = topic
     this.deadline = deadline
     this.acceptanceMethod = acceptanceMethod
     this.publications = []
-    this.users = users
+    this.users = []
 
     this.receptionState = new ReceptionState(this, deadline)
     this.biddingState = new BiddingState(this, 12000)
@@ -21,9 +21,16 @@ class Track {
   getReviewers() {
     const reviewers = this.users.filter(user => user.hasRole('reviewer'));
     return reviewers;
-}
+  }
 
-  submitPublication(publication) {
+  registerUser(user) {
+    this.users.push(user)
+  }
+
+  submitPublication(publication, user) {
+    if (!this.users.includes(user)) {
+      throw new Error(`El usuario ${publication.leadAuthor.name}  no esta registrado en la conferencia.`);
+    }
     if (!(this.currentState instanceof ReceptionState)) {
       throw new Error('Solo se puede enviar publicacion en la etapa de recepcion.');
     }
@@ -31,11 +38,27 @@ class Track {
     if (!this.isPublicationAvailableType(publication.getType())) {
       throw new Error(`El tipo de la publicación es incorrecto para la sesion`);
     }
-    this.currentState.submitPulication(publication)
+    this.currentState.submitPulication(publication);
     if (publication.state == 'inReview') {
       this.publications.push(publication);
     }
   }
+
+  submitBid(publication, interestLevel, reviewer) {
+    if (!this.users.includes(reviewer)) {
+      throw new Error(`El usuario ${reviewer.name}  no esta registrado en la conferencia.`);
+    }
+    if (!this.getReviewers().includes(reviewer)) {
+      throw new Error(`El usuario ${reviewer.name} no tiene el rol de revisor.`);
+    }
+
+    if (!(this.currentState instanceof BiddingState)) {
+      throw new Error('Solo se puede enviar bids en la etapa de bidding.');
+    }
+
+    this.currentState.submitBid(publication, interestLevel, reviewer)
+  }
+
 
   getType() {
     throw new Error("El método 'getType()' debe ser implementado.");
@@ -52,12 +75,12 @@ class Track {
   }
 
   removeRejectedPublications() {
-    this.publications.forEach( (publication, index) => {
-        if (publication.state === 'rejected') {
-            this.publications.splice(index, 1);
-        }
+    this.publications.forEach((publication, index) => {
+      if (publication.state === 'rejected') {
+        this.publications.splice(index, 1);
+      }
     });
-}
+  }
 
   getTrackInfo() {
     console.log(`Sesión de ${this.topic} de tipo ${this.getType()}, articulos presentados: ${this.publications.length}, usuarios registrados: ${this.users.length}`)

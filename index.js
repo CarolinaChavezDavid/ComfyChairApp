@@ -41,7 +41,8 @@ AIconference.registerUser(user7)
 AIconference.registerUser(user8)
 AIconference.registerUser(user9)
 
-AIconference.createTrack("regular", "Machine learning", 3000, 3000, caroUser)
+AIconference.getConferenceInfo()
+let machineLearningTrack = AIconference.createTrack("regular", "Machine learning", 3000, 3000, caroUser)
 
 const posterAIPublication = new PosterPublication('IA en la salud', 'www.somewhere.com', caroUser)
 const regularAIPublication = new RegularPublication(
@@ -86,14 +87,15 @@ const regularAIPublicationError = new RegularPublication(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
 );
 
-AIconference.submitPublicationToTrack('Machine learning', regularAIPublication, caroUser)
-AIconference.submitPublicationToTrack('Machine learning', regularAIPublication1, user6)
-AIconference.submitPublicationToTrack('Machine learning', regularAIPublication2, user7)
-AIconference.submitPublicationToTrack('Machine learning', regularAIPublication3, user8)
-AIconference.submitPublicationToTrack('Machine learning', regularAIPublication4, user9)
-AIconference.submitPublicationToTrack('Machine learning', regularAIPublicationError, user9)
+machineLearningTrack.submitPublication(regularAIPublication1, user6)
+machineLearningTrack.submitPublication(regularAIPublication2, user7)
+machineLearningTrack.submitPublication(regularAIPublication3, user8)
+machineLearningTrack.submitPublication(regularAIPublication4, user9)
+machineLearningTrack.submitPublication(regularAIPublicationError, user9)
 
 
-
+setTimeout(() => {
+    machineLearningTrack.submitBid(regularAIPublication1, 'maybe', caroUser)
+}, 3000);
 
 

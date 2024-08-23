@@ -16,11 +16,8 @@ class Conference {
         this.tracks.push(track)
     }
 
-    submitPublicationToTrack(topic, publication){
-        const track = this.findTrack(topic);
-        if(!this.isUserRegistered(publication.leadAuthor)){
-            throw new Error(`El usuario ${publication.leadAuthor.name} ${publication.leadAuthor.lastName} no esta registrado en la conferencia.`);
-        }
+    submitPublicationToTrack(topic, publication) {
+
         if (!track) {
             throw new Error(`La sesion "${topic}" no fue encontrada en la conferencia "${this.field}".`);
         }
@@ -28,7 +25,7 @@ class Conference {
         track.submitPublication(publication)
     }
 
-    updateUserAsAuthor(user){
+    updateUserAsAuthor(user) {
         if (!user.roles.has('author')) {
             return new AuthorRole(user)
         }
@@ -40,6 +37,7 @@ class Conference {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -48,7 +46,12 @@ class Conference {
     }
 
     registerUser(user) {
+        if(this.isUserRegistered(user)){
+            throw new Error(`El usuario "${user.name}" ya esta registrado en la conferencia".`);
+        } 
         this.users.push(user)
+        this.tracks.forEach(track => track.registerUser(user))
+        
     }
 
     getConferenceInfo() {
@@ -62,8 +65,8 @@ class Conference {
     }
 
     createTrack(type, topic, deadline, acceptanceMethod, user) {
-        if(!this.isUserRegistered(user)){
-            throw new Error(`El usuario "${user.name}" no esta registrado en la conferncia.`);
+        if (!this.isUserRegistered(user)) {
+            throw new Error(`El usuario "${user.name} ${user.lastName}" no esta registrado en la conferncia.`);
         }
         if (!user.hasRole('chair')) {
             throw new Error('Solo los organizadores pueden crear sesiones.');
@@ -72,19 +75,20 @@ class Conference {
         let track;
         switch (type) {
             case 'regular':
-                track = new RegularTrack(topic, deadline, acceptanceMethod, this.users);
+                track = new RegularTrack(topic, deadline, acceptanceMethod);
                 break;
             case 'workshop':
-                track = new WorkshopTrack(topic, deadline, acceptanceMethod, this.users);
+                track = new WorkshopTrack(topic, deadline, acceptanceMethod);
                 break;
             case 'poster':
-                track = new PosterTrack(topic, deadline, acceptanceMethod, this.users);
+                track = new PosterTrack(topic, deadline, acceptanceMethod);
                 break;
             default:
                 throw new Error('Tipo de sesión invalido.');
         }
-
+        this.users.forEach(user => track.registerUser(user))
         this.tracks.push(track);
+        return track;
     }
 }
 

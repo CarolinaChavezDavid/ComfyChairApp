@@ -7,7 +7,7 @@ class UserRoleDecorator extends User {
   }
 
   addRole(role) {
-    this.user.addRole(role);
+    this.user.addRole(role)
   }
 
   removeRole(role) {

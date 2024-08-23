@@ -6,6 +6,8 @@ class Publication {
     this.leadAuthor = leadAuthor;
     this.state = 'draft';
     this.sendDate = new Date();
+
+    this.bids = []
   }
 
   updateState(newState) {
