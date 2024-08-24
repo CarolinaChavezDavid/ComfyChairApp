@@ -6,26 +6,25 @@ class BiddingState extends TrackState {
         super(track)
         this.deadline = deadline
         this.track = track
-        this.init()
-
     }
 
     init() {
         setTimeout(() => {
-            console.log(`La sesion "${this.track.topic}" ha pasado al estado de Asignacion, los revisores podran revisar los articulos revisados.`);
+            this.track.setState(this.track.assigmentState)
+            console.log(`La sesion "${this.track.topic}" ha pasado al estado de Asignacion.`);
         }, this.deadline);
     }
 
     submitBid(publication, interestLevel, reviewer) {
-        const existingBid = publication.bids.find(bid => bid.publication === publication);
+        const existingBid = publication.bids.find(bid => bid.reviewer === reviewer);
 
         if (existingBid) {
             throw new Error(`El revisor ${reviewer.name} ya envio un bid para la publicacion "${publication.title}". Por favor actualice su bid.`);
 
         }
         const bid = {
-            publication,
             interestLevel,
+            reviewer
         }
 
         publication.bids.push(bid)

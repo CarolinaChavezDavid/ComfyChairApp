@@ -1,3 +1,4 @@
+const AssigmentState = require("./AssignmentState");
 const BiddingState = require("./BiddingState");
 const ReceptionState = require("./ReceptionState");
 
@@ -11,11 +12,13 @@ class Track {
 
     this.receptionState = new ReceptionState(this, deadline)
     this.biddingState = new BiddingState(this, 12000)
-    this.currentState = this.receptionState
+    this.assigmentState = new AssigmentState(this)
+    this.setState(this.receptionState)
   }
 
   setState(state) {
     this.currentState = state;
+    this.currentState.init()
   }
 
   getReviewers() {
@@ -38,7 +41,7 @@ class Track {
     if (!this.isPublicationAvailableType(publication.getType())) {
       throw new Error(`El tipo de la publicación es incorrecto para la sesion`);
     }
-    this.currentState.submitPulication(publication);
+    this.currentState.submitPulication(publication, user);
     if (publication.state == 'inReview') {
       this.publications.push(publication);
     }

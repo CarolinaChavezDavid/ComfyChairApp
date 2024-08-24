@@ -6,7 +6,6 @@ class ReceptionState extends TrackState {
         super(track)
         this.track = track
         this.deadline = deadline
-        this.init()
     }
 
     init() {
@@ -20,7 +19,7 @@ class ReceptionState extends TrackState {
         }, this.deadline);
     }
 
-    submitPulication(publication) {
+    submitPulication(publication, user) {
         publication.updateState('inReview')
         if (this.isNullOrEmpty(publication.title)) {
             console.log(`La publicación ${publication.title} no tiene un titulo correcto.`)
@@ -34,20 +33,21 @@ class ReceptionState extends TrackState {
             if (this.isNullOrEmpty(publication.abstract)) {
                 console.log(`La publicación ${publication.title} no tiene resumen`)
                 publication.updateState('rejected')
-            }
-            if (this.countWords(publication.abstract) > 300) {
+            } else if (this.countWords(publication.abstract) > 300) {
                 console.log(`La publicación ${publication.title} tiene un resumen de mas de 300 palabras`)
                 publication.updateState('rejected')
             }
         }
+    console.log(`La publicación "${publication.title}" fue enviada a revision por ${user.name} ${user.lastName} `)
     }
 
     countWords(text) {
-        return text.trim().split(/\s+/).length;
+        const words = text.split(/\s+/).filter(word => word.length > 0);
+        return words.length;
     }
 
     isNullOrEmpty(text) {
-        return !text || text.trim().length === 0;
+        return text === null || text === undefined || text.trim().length === 0;
     }
 
 }

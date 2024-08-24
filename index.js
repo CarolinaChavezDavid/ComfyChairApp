@@ -84,7 +84,7 @@ const regularAIPublicationError = new RegularPublication(
     'IA en la contabilidad',
     'www.somewhere.com',
     user9,
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+    null
 );
 
 machineLearningTrack.submitPublication(regularAIPublication1, user6)
@@ -96,6 +96,14 @@ machineLearningTrack.submitPublication(regularAIPublicationError, user9)
 
 setTimeout(() => {
     machineLearningTrack.submitBid(regularAIPublication1, 'maybe', caroUser)
+    machineLearningTrack.submitBid(regularAIPublication2, 'interested', user1)
+    machineLearningTrack.submitBid(regularAIPublication3, 'notInterested', user1)
+    machineLearningTrack.submitBid(regularAIPublication4, 'maybe', user2)
+    machineLearningTrack.submitBid(regularAIPublication1, 'interested', user3)
+    machineLearningTrack.submitBid(regularAIPublication2, 'notInterested', user4)
+    machineLearningTrack.submitBid(regularAIPublication3, 'maybe', user5)
+    machineLearningTrack.getTrackInfo()
+
 }, 3000);
 
 
