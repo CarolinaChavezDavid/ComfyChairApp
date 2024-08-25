@@ -5,6 +5,9 @@ class ReviewerRole extends UserRoleDecorator {
     super(user);
     super.addRole('reviewer')
     this.user = user
+
+    this.reviews = []
+    this.reviewRequests = []
   }
 
   updateBidingState(publications) {
@@ -20,7 +23,18 @@ class ReviewerRole extends UserRoleDecorator {
     console.log(`${this.user.name} puede revisar articulos.`)
   }
 
-  
+  addReview(review) {
+    this.reviews.push(review)
+  }
+
+
+  reviewRequest(request) {
+    this.reviewRequests.push(request);
+  }
+
+  hasMaxRequest(numRequest) {
+    return this.reviewRequests < numRequest
+  }
 
   updateBid(publication, interestLevel) {
     const existingBid = this.bids.find(bid => bid.publication === publication);

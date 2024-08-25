@@ -107,3 +107,12 @@ setTimeout(() => {
 }, 3000);
 
 
+
+
+setTimeout(() => {
+    regularAIPublication2.getInterestedInfo()
+
+}, 12000);
+
+
+

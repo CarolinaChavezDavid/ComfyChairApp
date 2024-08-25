@@ -36,6 +36,8 @@ class User {
     return this.roles.includes(role);
   }
 
+
+
   getUserInfo() {
     if (this.roles && this.roles.size > 0) {
       console.log(`${this.name} ${this.lastName} tiene los roles: ${Array.from(this.roles).join(', ')}`);
