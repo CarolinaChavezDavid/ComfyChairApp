@@ -52,7 +52,7 @@ const regularAIPublication = new RegularPublication(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
 )
 const regularAIPublication1 = new RegularPublication(
-    'La ética en la IA',
+    'Industria 4.0 y la AI',
     'www.somewhere.com',
     user6,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
@@ -100,19 +100,15 @@ setTimeout(() => {
     machineLearningTrack.submitBid(regularAIPublication3, 'notInterested', user1)
     machineLearningTrack.submitBid(regularAIPublication4, 'maybe', user2)
     machineLearningTrack.submitBid(regularAIPublication1, 'interested', user3)
+    machineLearningTrack.submitBid(regularAIPublication, 'interested', caroUser)
+    machineLearningTrack.submitBid(regularAIPublication2, 'interested', user3)
+    machineLearningTrack.submitBid(regularAIPublication3, 'interested', user3)
     machineLearningTrack.submitBid(regularAIPublication2, 'notInterested', user4)
     machineLearningTrack.submitBid(regularAIPublication3, 'maybe', user5)
     machineLearningTrack.getTrackInfo()
 
 }, 3000);
 
-
-
-
-setTimeout(() => {
-    regularAIPublication2.getInterestedInfo()
-
-}, 12000);
 
 
 

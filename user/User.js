@@ -8,15 +8,13 @@ class User {
     this.roles = [];
 
     this.state = 'receptionState'
-
+    this.reviewRequests = []
   }
-
 
   updateBidingState(publications) {
     this.state = 'binddingState'
     console.log(`El revisor ${this.user.name}, podra enviar bids a las siguientes publicaciones: ${Array.from(publications).join(', ')}`)
   }
-
 
   addRole(role) {
     if (!this.roles.includes(role)) {
@@ -36,6 +34,9 @@ class User {
     return this.roles.includes(role);
   }
 
+  hasMaxRequest(numRequest) {
+    return this.reviewRequests.length >= numRequest;
+  }
 
 
   getUserInfo() {

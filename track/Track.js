@@ -1,6 +1,8 @@
 const AssigmentState = require("./AssignmentState");
 const BiddingState = require("./BiddingState");
 const ReceptionState = require("./ReceptionState");
+const RevisionState = require("./RevisionState");
+const SelectionState = require("./SelectionState");
 
 class Track {
   constructor(topic, deadline, acceptanceMethod) {
@@ -10,9 +12,11 @@ class Track {
     this.publications = []
     this.users = []
 
-    this.receptionState = new ReceptionState(this, deadline)
-    this.biddingState = new BiddingState(this, 12000)
-    this.assigmentState = new AssigmentState(this)
+    this.receptionState = new ReceptionState(this, deadline);
+    this.biddingState = new BiddingState(this, 12000);
+    this.assigmentState = new AssigmentState(this);
+    this.revisionState = new RevisionState(this);
+    this.selectionState = new SelectionState(this);
     this.setState(this.receptionState)
   }
 
@@ -59,9 +63,23 @@ class Track {
       throw new Error('Solo se puede enviar bids en la etapa de bidding.');
     }
 
-    this.currentState.submitBid(publication, interestLevel, reviewer)
+    this.currentState.submitBid(publication, interestLevel, reviewer);
   }
 
+  submitReview(publication, score, message, reviewer) {
+    if (!this.users.includes(reviewer)) {
+      throw new Error(`El usuario ${reviewer.name}  no esta registrado en la conferencia.`);
+    }
+    if (!this.getReviewers().includes(reviewer)) {
+      throw new Error(`El usuario ${reviewer.name} no tiene el rol de revisor.`);
+    }
+
+    if (!(this.currentState instanceof RevisionState)) {
+      throw new Error('Solo se puede enviar revisiones en la etapa de revisión.');
+    }
+
+    this.currentState.submitReview(publication, score, message, reviewer);
+  }
 
   getType() {
     throw new Error("El método 'getType()' debe ser implementado.");

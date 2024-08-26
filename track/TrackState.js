@@ -15,7 +15,7 @@ class TrackState{
         throw new Error('Este metodo debe ser implementado');
     }
     
-    startReview(track) {
+    submitReview(publication, score, message, reviewer) {
         throw new Error('Este metodo debe ser implementado');
     }
 

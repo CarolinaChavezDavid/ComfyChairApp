@@ -27,13 +27,8 @@ class ReviewerRole extends UserRoleDecorator {
     this.reviews.push(review)
   }
 
-
-  reviewRequest(request) {
-    this.reviewRequests.push(request);
-  }
-
   hasMaxRequest(numRequest) {
-    return this.reviewRequests < numRequest
+    return this.reviewRequests.length >= numRequest;
   }
 
   updateBid(publication, interestLevel) {

@@ -10,8 +10,8 @@ class BiddingState extends TrackState {
 
     init() {
         setTimeout(() => {
-            this.track.setState(this.track.assigmentState)
             console.log(`La sesion "${this.track.topic}" ha pasado al estado de Asignacion.`);
+            this.track.setState(this.track.assigmentState)
         }, this.deadline);
     }
 

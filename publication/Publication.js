@@ -10,6 +10,7 @@ class Publication {
     this.sendDate = new Date();
 
     this.bids = []
+    this.reviewers = []
     this.reviews = []
   }
 
@@ -21,6 +22,9 @@ class Publication {
     throw new Error("El método 'getType()' debe ser implementado.");
   }
 
+  submitReview(review){
+    this.reviews.push(review)
+  }
 
   addAuthor(user) {
     this.authors.push(user)
@@ -30,16 +34,8 @@ class Publication {
     console.log(`Publicacion ${this.title}, estado: ${this.state}, tipo: ${this.getType()}`)
   }
 
-  addReview(review) {
-    this.reviews.push(review);
-  }
-
-  getInterestedInfo(){
-  this.reviews.forEach(item => console.log(`usuario interesado ${item.reviewer.name}`))
-  }
-
-  hasMaxReviwes(){
-    return this.reviews.length === Constants.MAX_REVIEWS
+  hasMaxReviewes(){
+    return this.reviewers.length === Constants.MAX_PUBLICATION_REVIEWS
   }
 }
 
