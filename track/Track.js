@@ -5,15 +5,14 @@ const RevisionState = require("./RevisionState");
 const SelectionState = require("./SelectionState");
 
 class Track {
-  constructor(topic, deadline, acceptanceMethod) {
+  constructor(topic, acceptanceMethod) {
     this.topic = topic
-    this.deadline = deadline
     this.acceptanceMethod = acceptanceMethod
     this.publications = []
     this.users = []
 
-    this.receptionState = new ReceptionState(this, deadline);
-    this.biddingState = new BiddingState(this, 12000);
+    this.receptionState = new ReceptionState(this, 3000);
+    this.biddingState = new BiddingState(this, 3000);
     this.assigmentState = new AssigmentState(this);
     this.revisionState = new RevisionState(this);
     this.selectionState = new SelectionState(this);

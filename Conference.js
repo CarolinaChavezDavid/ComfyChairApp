@@ -64,7 +64,7 @@ class Conference {
         })
     }
 
-    createTrack(type, topic, deadline, acceptanceMethod, user) {
+    createTrack(type, topic, acceptanceMethod, user) {
         if (!this.isUserRegistered(user)) {
             throw new Error(`El usuario "${user.name} ${user.lastName}" no esta registrado en la conferncia.`);
         }
@@ -75,13 +75,13 @@ class Conference {
         let track;
         switch (type) {
             case 'regular':
-                track = new RegularTrack(topic, deadline, acceptanceMethod);
+                track = new RegularTrack(topic, acceptanceMethod);
                 break;
             case 'workshop':
-                track = new WorkshopTrack(topic, deadline, acceptanceMethod);
+                track = new WorkshopTrack(topic, acceptanceMethod);
                 break;
             case 'poster':
-                track = new PosterTrack(topic, deadline, acceptanceMethod);
+                track = new PosterTrack(topic, acceptanceMethod);
                 break;
             default:
                 throw new Error('Tipo de sesión invalido.');

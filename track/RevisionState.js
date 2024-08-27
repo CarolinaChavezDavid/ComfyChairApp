@@ -6,54 +6,53 @@ class RevisionState extends TrackState {
 
     constructor(track) {
         super(track)
-        this.track = track
+        this.track = track;
+        this.interval = null;
     }
 
     init() {
         console.log(`Ha iniciado el proceso de revisión para la sesión "${this.track.topic}"`);
+        this.startReviewCheck()
     }
 
     submitReview(publication, score, message, reviewer) {
-        if (this.validateUser(publication, reviewer) && this.isValidateScore(score) && this.isNullOrEmpty(message)) {
-            let review =  new Review(score, message, reviewer)
+        if (this.validateUser(publication, reviewer) && this.isValidateScore(score) && !this.isNullOrEmpty(message)) {
+            let review = new Review(score, message, reviewer)
             publication.submitReview(review)
         } else {
-            console.error('Los parametros de la revisión no son correcto')
+            throw new Error(`La revisión enviada por ${reviewer.name} ${reviewer.lastName} no son correcto para la publicación "${publication.title}"`)
         }
-
     }
 
-    finalizeReviews(){
-        let unfinishReviews = [];
+    finalizeReviews() {
+        let allReviewsComplete = true;
         this.track.publications.forEach(pub => {
-            pub.reviews < Constants.MAX_PUBLICATION_REVIEWS
-            unfinishReviews.push(pub)
-            
+            pub.reviewers.forEach(reviewer => {
+
+                const review = pub.reviews.find(rev => rev.reviewer === reviewer);
+                if (!review) {
+                    console.error(`El revisor ${reviewer.name} no ha revisado la publicacón "${pub.title}"`);
+                    allReviewsComplete = false;
+                }
+            });
+
         });
-        
-        if (unfinishReviews.length > 0) {
-           unfinishReviews.forEach( pub => {
-            let reviewers = pub.reviewers
-             if (this.track.publications.reviewers.includes(review.reviewer)) {
-                
-             }
-            
-           });
-            console.error(`** ${reviewer.name} ${reviewer.lastName} podra revisar las publicaciones  ${reviewer.reviewRequests.map(pub => pub.title).join(', ')}`)
+
+        if (allReviewsComplete) {
+            console.log("Todas las revisiones se han completado");
+            clearInterval(this.interval);
+            this.track.setState(this.track.selectionState)
+        } else {
+            console.log("Notificando revisiones faltantes");
         }
 
-        return unfinishReviews.length === 0;
     }
 
-    getMissingReviews(){
-
-    }
-
-    validateUser(publication, reviewer){
+    validateUser(publication, reviewer) {
         return publication.reviewers.includes(reviewer)
     }
 
-    isValidateScore(score){
+    isValidateScore(score) {
         return score >= -3 && score <= 3
     }
 
@@ -61,7 +60,11 @@ class RevisionState extends TrackState {
         return text === null || text === undefined || text.trim().length === 0;
     }
 
-
+    startReviewCheck() {
+        this.interval = setInterval(() => {
+            this.finalizeReviews();
+        }, 10000);
+    }
 }
 
 module.exports = RevisionState;

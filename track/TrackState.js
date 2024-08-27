@@ -7,6 +7,7 @@ class TrackState{
     init() {
         throw new Error('Este metodo debe ser implementado');
     }
+    
     submitPulication(publication) {
         throw new Error('Este metodo debe ser implementado');
     }

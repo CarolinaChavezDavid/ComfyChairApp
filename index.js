@@ -42,7 +42,7 @@ AIconference.registerUser(user8)
 AIconference.registerUser(user9)
 
 AIconference.getConferenceInfo()
-let machineLearningTrack = AIconference.createTrack("regular", "Machine learning", 3000, 3000, caroUser)
+let machineLearningTrack = AIconference.createTrack("regular", "Machine learning", 3000, caroUser)
 
 const posterAIPublication = new PosterPublication('IA en la salud', 'www.somewhere.com', caroUser)
 const regularAIPublication = new RegularPublication(
@@ -110,5 +110,21 @@ setTimeout(() => {
 }, 3000);
 
 
+setTimeout(() => {
+    machineLearningTrack.submitReview(regularAIPublication2, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
+    machineLearningTrack.submitReview(regularAIPublication1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
+    machineLearningTrack.submitReview(regularAIPublication2, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
+    machineLearningTrack.submitReview(regularAIPublication2, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
+    machineLearningTrack.submitReview(regularAIPublication3, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user5)
+}, 7000);
 
-
+setTimeout(() => {
+    machineLearningTrack.submitReview(regularAIPublication1, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', caroUser)
+    machineLearningTrack.submitReview(regularAIPublication2, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', caroUser)
+    machineLearningTrack.submitReview(regularAIPublication1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
+    machineLearningTrack.submitReview(regularAIPublication3, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user2)
+    machineLearningTrack.submitReview(regularAIPublication3, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user4)
+    machineLearningTrack.submitReview(regularAIPublication4, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user2)
+    machineLearningTrack.submitReview(regularAIPublication4, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user4)
+    machineLearningTrack.submitReview(regularAIPublication4, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user5)
+}, 20000);
