@@ -6,8 +6,9 @@ class Publication {
     this.attachedFile = attachedFile;
     this.authors = []
     this.leadAuthor = leadAuthor;
-    this.state = 'draft';
+    this.state = Constants.PUBLICATION_STATE.DRAFT;
     this.sendDate = new Date();
+    this.finalScore = 0;
 
     this.bids = []
     this.reviewers = []
@@ -22,7 +23,7 @@ class Publication {
     throw new Error("El método 'getType()' debe ser implementado.");
   }
 
-  submitReview(review){
+  submitReview(review) {
     this.reviews.push(review)
   }
 
@@ -34,8 +35,13 @@ class Publication {
     console.log(`Publicacion ${this.title}, estado: ${this.state}, tipo: ${this.getType()}`)
   }
 
-  hasMaxReviewes(){
+  hasMaxReviewes() {
     return this.reviewers.length === Constants.MAX_PUBLICATION_REVIEWS
+  }
+
+  calculateFinalScore() {
+    const totalScore = this.reviews.reduce((sum, review) => sum + review.score, 0);
+    this.finalScore = totalScore / this.reviews.length;
   }
 }
 

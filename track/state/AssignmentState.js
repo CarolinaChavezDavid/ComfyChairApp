@@ -1,4 +1,4 @@
-const Constants = require("../utils/Constants");
+const Constants = require("../../utils/Constants");
 const TrackState = require("./TrackState");
 
 class AssigmentState extends TrackState {

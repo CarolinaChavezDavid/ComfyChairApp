@@ -1,9 +1,10 @@
+const Constants = require('../utils/Constants');
 const UserRoleDecorator = require('./UserRoleDecorator'); 
 
 class AuthorRole extends UserRoleDecorator {
     constructor(user) {
       super(user);
-      this.addRole('author');
+      this.addRole(Constants.USER_ROLE.AUTHOR);
     }
 
     getUserInfo() {

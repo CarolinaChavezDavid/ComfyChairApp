@@ -1,13 +1,14 @@
+const Constants = require("../../utils/Constants");
 const Track = require("./Track");
 
 class RegularTrack extends Track {
 
     getType() {
-        return 'regular';
+        return Constants.TRACK_TYPE.REGULAR;
     }
 
     isPublicationAvailableType(publicationType) {
-        return (publicationType === 'regular')
+        return (publicationType === Constants.PUBLICATION_TYPE.REGULAR);
     }
 }
 

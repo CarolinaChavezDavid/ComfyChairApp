@@ -1,22 +1,23 @@
-const AssigmentState = require("./AssignmentState");
-const BiddingState = require("./BiddingState");
-const ReceptionState = require("./ReceptionState");
-const RevisionState = require("./RevisionState");
-const SelectionState = require("./SelectionState");
+const Constants = require("../../utils/Constants");
+const AssigmentState = require("../state/AssignmentState");
+const BiddingState = require("../state/BiddingState");
+const ReceptionState = require("../state/ReceptionState");
+const RevisionState = require("../state/RevisionState");
+const SelectionState = require("../state/SelectionState");
 
 class Track {
-  constructor(topic, acceptanceMethod) {
-    this.topic = topic
-    this.acceptanceMethod = acceptanceMethod
-    this.publications = []
-    this.users = []
+  constructor(topic, selectionMethod) {
+    this.topic = topic;
+    this.selectionMethod = selectionMethod;
+    this.publications = [];
+    this.users = [];
 
     this.receptionState = new ReceptionState(this, 3000);
     this.biddingState = new BiddingState(this, 3000);
     this.assigmentState = new AssigmentState(this);
     this.revisionState = new RevisionState(this);
     this.selectionState = new SelectionState(this);
-    this.setState(this.receptionState)
+    this.setState(this.receptionState);
   }
 
   setState(state) {
@@ -25,7 +26,7 @@ class Track {
   }
 
   getReviewers() {
-    const reviewers = this.users.filter(user => user.hasRole('reviewer'));
+    const reviewers = this.users.filter(user => user.hasRole(Constants.USER_ROLE.REVIEWER));
     return reviewers;
   }
 
@@ -45,7 +46,7 @@ class Track {
       throw new Error(`El tipo de la publicación es incorrecto para la sesion`);
     }
     this.currentState.submitPulication(publication, user);
-    if (publication.state == 'inReview') {
+    if (publication.state == Constants.PUBLICATION_STATE.IN_REVIEW) {
       this.publications.push(publication);
     }
   }
@@ -88,6 +89,10 @@ class Track {
     throw new Error("El método 'isPublicationAvailableType()' debe ser implementado.");
   }
 
+  finalizeTrack(){
+    console.log(`La organización de la sesión "${this.topic}" ha finalizado`)
+  }
+
   notifyReviwers() {
     this.getReviewers().forEach(reviewer => {
       reviewer.updateBidingState(this.publications)
@@ -96,7 +101,7 @@ class Track {
 
   removeRejectedPublications() {
     this.publications.forEach((publication, index) => {
-      if (publication.state === 'rejected') {
+      if (publication.state === Constants.PUBLICATION_STATE.REJECTED) {
         this.publications.splice(index, 1);
       }
     });

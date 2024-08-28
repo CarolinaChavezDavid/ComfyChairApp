@@ -20,7 +20,7 @@ class TrackState{
         throw new Error('Este metodo debe ser implementado');
     }
 
-    finalizeSelection(track) {
+    publicationsSelection(publications, selectionMethod) {
         throw new Error('Este metodo debe ser implementadon');
     }
 }

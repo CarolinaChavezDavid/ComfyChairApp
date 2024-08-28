@@ -1,7 +1,7 @@
-const PosterTrack = require('./track/PosterTrack');
-const RegularTrack = require('./track/RegularTrack');
-const User = require('./track/Track');
-const WorkshopTrack = require('./track/WorkshopTrack');
+const PosterTrack = require('./track/model/PosterTrack');
+const RegularTrack = require('./track/model/RegularTrack');
+const User = require('./track/model/Track');
+const WorkshopTrack = require('./track/model/WorkshopTrack');
 const AuthorRole = require('./user/AuthorRole');
 
 class Conference {
@@ -64,7 +64,7 @@ class Conference {
         })
     }
 
-    createTrack(type, topic, acceptanceMethod, user) {
+    createTrack(type, topic, selectionMethod, user) {
         if (!this.isUserRegistered(user)) {
             throw new Error(`El usuario "${user.name} ${user.lastName}" no esta registrado en la conferncia.`);
         }
@@ -75,13 +75,13 @@ class Conference {
         let track;
         switch (type) {
             case 'regular':
-                track = new RegularTrack(topic, acceptanceMethod);
+                track = new RegularTrack(topic, selectionMethod);
                 break;
             case 'workshop':
-                track = new WorkshopTrack(topic, acceptanceMethod);
+                track = new WorkshopTrack(topic, selectionMethod);
                 break;
             case 'poster':
-                track = new PosterTrack(topic, acceptanceMethod);
+                track = new PosterTrack(topic, selectionMethod);
                 break;
             default:
                 throw new Error('Tipo de sesión invalido.');

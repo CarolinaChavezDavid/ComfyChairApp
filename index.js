@@ -2,7 +2,9 @@ const Conference = require('./Conference');
 const PosterPublication = require('./publication/PosterPublication');
 const Poster = require('./publication/PosterPublication');
 const RegularPublication = require('./publication/RegularPublication');
-const PosterTrack = require('./track/PosterTrack');
+const PosterTrack = require('./track/model/PosterTrack');
+const BestPublicationsMethod = require('./track/selection/BestPublicationsMethod');
+const FixSetMethod = require('./track/selection/FixSetMethod');
 const AuthorRole = require('./user/AuthorRole');
 const ChairRole = require('./user/ChairRole');
 const ReviewerRole = require('./user/ReviewerRole');
@@ -42,7 +44,9 @@ AIconference.registerUser(user8)
 AIconference.registerUser(user9)
 
 AIconference.getConferenceInfo()
-let machineLearningTrack = AIconference.createTrack("regular", "Machine learning", 3000, caroUser)
+let fixSetSelectionMethod = new FixSetMethod(0.5);
+let bestPublicationsSelectionMethod = new BestPublicationsMethod(2);
+let machineLearningTrack = AIconference.createTrack("regular", "Machine learning", bestPublicationsSelectionMethod, caroUser)
 
 const posterAIPublication = new PosterPublication('IA en la salud', 'www.somewhere.com', caroUser)
 const regularAIPublication = new RegularPublication(
@@ -111,10 +115,8 @@ setTimeout(() => {
 
 
 setTimeout(() => {
-    machineLearningTrack.submitReview(regularAIPublication2, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
     machineLearningTrack.submitReview(regularAIPublication1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
     machineLearningTrack.submitReview(regularAIPublication2, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
-    machineLearningTrack.submitReview(regularAIPublication2, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
     machineLearningTrack.submitReview(regularAIPublication3, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user5)
 }, 7000);
 
@@ -128,3 +130,7 @@ setTimeout(() => {
     machineLearningTrack.submitReview(regularAIPublication4, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user4)
     machineLearningTrack.submitReview(regularAIPublication4, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user5)
 }, 20000);
+
+setTimeout(() => {
+    machineLearningTrack.submitReview(regularAIPublication2, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
+}, 30000);

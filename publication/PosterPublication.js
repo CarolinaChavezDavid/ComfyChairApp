@@ -1,3 +1,4 @@
+const Constants = require("../utils/Constants");
 const Publication = require("./Publication");
 
 class PosterPublication extends Publication {
@@ -7,7 +8,7 @@ class PosterPublication extends Publication {
     }
 
     getType() {
-        return 'poster';
+        return Constants.PUBLICATION_TYPE.POSTER;
     }
 
   }
