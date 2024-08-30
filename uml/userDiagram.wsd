@@ -1,0 +1,53 @@
+@startuml
+class User {
+    - name: String
+    - lastName: String
+    - email: String
+    - password: String
+    - membership: String
+    - roles: Array
+    - state: String
+    + User(name: String, lastName: String, email: String, password: String, membership: String)
+    + addRole(role: String): void
+    + removeRole(role: String): void
+    + getRoles(): Array
+    + hasRole(role: String): Boolean
+    + getUserInfo(): void
+}
+
+abstract class UserRoleDecorator {
+    - user: User
+    + UserRoleDecorator(user: User)
+    + addRole(role: String): void
+    + removeRole(role: String): void
+    + getRoles(): Array
+    + hasRole(role: String): Boolean
+    + getUserInfo(): void
+}
+
+class AuthorRole {
+    + AuthorRole(user: User)
+    + getUserInfo(): void
+}
+
+class ChairRole {
+    + ChairRole(user: User)
+    + getUserInfo(): void
+}
+
+class ReviewerRole {
+    - reviewRequests: Array
+    + ReviewerRole(user: User)
+    + updateBidingState(publications: Array): void
+    + getUserInfo(): void
+    + addReview(review: String): void
+    + hasMaxRequest(numRequest: Number): Boolean
+    + updateBid(publication: Object, interestLevel: String): void
+}
+
+UserRoleDecorator --> User : aggregates
+User <|-- UserRoleDecorator
+UserRoleDecorator <|-- AuthorRole
+UserRoleDecorator <|-- ChairRole
+UserRoleDecorator <|-- ReviewerRole
+@enduml
