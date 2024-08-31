@@ -5,12 +5,14 @@ const WorkshopTrack = require('../track/model/WorkshopTrack');
 const PosterTrack = require('../track/model/PosterTrack');
 const Publication = require('../publication/Publication');
 const Author =  require('../user/AuthorRole')
+const Chair =  require('../user/ChairRole')
+const RegularPublication =  require('../publication/RegularPublication')
+
 
 class TestDataFactory {
 
     static createUserCarolina() {
         const user = new User('Carolina', 'Chavez', 'scchavezd@gmail.com', 'password123', 'UNLP');
-        user.addRole('author'); 
         return user
     }
 
@@ -27,8 +29,18 @@ class TestDataFactory {
 
     static createUserFerChair() {
         const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456','UNLP');
-        user.addRole('chair');  
-        return user
+        const chairUser = new Chair(user)
+        return chairUser
+
+    }
+
+    static createRegularPublication(user){
+        return new RegularPublication(
+            'Avances en el aprendizaje automático',
+            'www.somewhere.com',
+            user,
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum ultricies libero non eleifend. Integer urna ipsum, tristique nec semper.'
+        );
 
     }
 
