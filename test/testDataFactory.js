@@ -4,9 +4,10 @@ const RegularTrack = require('../track/model/RegularTrack');
 const WorkshopTrack = require('../track/model/WorkshopTrack');
 const PosterTrack = require('../track/model/PosterTrack');
 const Publication = require('../publication/Publication');
-const Author =  require('../user/AuthorRole')
-const Chair =  require('../user/ChairRole')
-const RegularPublication =  require('../publication/RegularPublication')
+const Author = require('../user/AuthorRole')
+const Chair = require('../user/ChairRole')
+const Review = require('../user/ReviewerRole')
+const RegularPublication = require('../publication/RegularPublication')
 
 
 class TestDataFactory {
@@ -22,19 +23,26 @@ class TestDataFactory {
     }
 
     static createUserFerAuthor() {
-        const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456','UNLP');
+        const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456', 'UNLP');
         const authorUser = new Author(user)
         return authorUser
     }
 
     static createUserFerChair() {
-        const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456','UNLP');
+        const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456', 'UNLP');
         const chairUser = new Chair(user)
         return chairUser
 
     }
 
-    static createRegularPublication(user){
+    static createUserFerReview() {
+        const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456', 'UNLP');
+        const reviewUser = new Review(user)
+        return reviewUser
+    }
+
+
+    static createRegularPublication(user) {
         return new RegularPublication(
             'Avances en el aprendizaje automático',
             'www.somewhere.com',
