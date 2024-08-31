@@ -1,29 +1,40 @@
 const TestDataFactory = require('./testDataFactory');
+const AuthorRole = require('../user/AuthorRole');
 
 describe('Conference', () => {
     let conference;
-    let chairUser;
+    let user;
 
     beforeEach(() => {
-        chairUser = TestDataFactory.createUserFerChair();
-        conference = TestDataFactory.createConference()
+        user = TestDataFactory.createUser(); // Asegúrate de que createUser devuelva un nuevo usuario
+        conference = TestDataFactory.createConference(); // Asegúrate de que createConference devuelva una nueva conferencia
     });
 
-    test('Como el usuario es "chair", deberia poder crear tracks y agregarlos a la conferencia', () => {
-        conference.createTrack('regular', 'Software Engineering', '2024-12-31', 'best', chairUser);
-        conference.createTrack('workshop', 'AI Innovations', '2024-11-30', 'best', chairUser);
-        conference.createTrack('poster', 'Big Data', '2024-10-31', 'best', chairUser);
-        expect(conference.tracks).toHaveLength(3);
+    test('Debería actualizar un usuario a autor si no tiene ese rol', () => {
+        const updatedUser = conference.updateUserAsAuthor(user);
+        expect(updatedUser).toBeInstanceOf(AuthorRole);
     });
 
-    test('Deberia agregar un usuario a la conferencia', () => {
-        conference.registerUser(chairUser);
-        expect(conference.users).toContain(chairUser);
+    test('No debería actualizar un usuario si ya tiene el rol de autor', () => {
+        const authorUser = TestDataFactory.createUserFerAuthor()
+        const updatedUser = conference.updateUserAsAuthor(authorUser);
+        expect(updatedUser).toBeUndefined(); // Si ya es autor, no debería actualizarlo
     });
 
-    test('Deberia devolver informacion de los tracks', () => {
-       // console.log = jest.fn(); // Mock console.log to test output
+    test('Debería verificar si un usuario está registrado en la conferencia', () => {
+        conference.registerUser(user);
+        const isRegistered = conference.isUserRegistered(user);
+        expect(isRegistered).toBe(true);
+    });
 
-      conference.getTracksInfo()
+    test('Debería agregar un usuario a la conferencia', () => {
+        conference.registerUser(user);
+        expect(conference.users).toContain(user);
+    });
+
+    test('Debería mostrar la información correcta de la conferencia', () => {
+        console.log = jest.fn(); // Simula console.log
+        conference.getConferenceInfo();
+        expect(console.log).toHaveBeenCalledWith(expect.stringContaining('Conferencia:'));
     });
 });
