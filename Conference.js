@@ -12,7 +12,7 @@ class Conference {
         this.tracks = []
     }
 
-    createTrack(track) {
+    /*createTrack(track) {
         this.tracks.push(track)
     }
 
@@ -23,7 +23,7 @@ class Conference {
         }
         publication.leadAuthor = this.updateUserAsAuthor(publication.leadAuthor)
         track.submitPublication(publication)
-    }
+    }*/
 
     updateUserAsAuthor(user) {
         if (!user.hasRole('author')) {  // Cambiado para usar el método hasRole del User
