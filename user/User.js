@@ -4,16 +4,16 @@ class User {
     this.lastName = lastName;
     this.email = email;
     this.password = password;
-    this.membership = membership
+    this.membership = membership;
     this.roles = [];
 
-    this.state = 'receptionState'
-    this.reviewRequests = []
+    this.state = 'receptionState';
+    this.reviewRequests = [];
   }
 
   updateBidingState(publications) {
-    this.state = 'binddingState'
-    console.log(`El revisor ${this.user.name}, podra enviar bids a las siguientes publicaciones: ${Array.from(publications).join(', ')}`)
+    this.state = 'binddingState';
+    console.log(`El revisor ${this.name}, podra enviar bids a las siguientes publicaciones: ${Array.from(publications).join(', ')}`);
   }
 
   addRole(role) {
@@ -23,7 +23,7 @@ class User {
   }
 
   removeRole(role) {
-    this.roles.delete(role);
+    this.roles = this.roles.filter(r => r !== role);  // Corregido para funcionar con array
   }
 
   getRoles() {
@@ -38,16 +38,13 @@ class User {
     return this.reviewRequests.length >= numRequest;
   }
 
-
   getUserInfo() {
-    if (this.roles && this.roles.size > 0) {
-      console.log(`${this.name} ${this.lastName} tiene los roles: ${Array.from(this.roles).join(', ')}`);
+    if (this.roles && this.roles.length > 0) {  // Cambiado size a length para array
+      console.log(`${this.name} ${this.lastName} tiene los roles: ${this.getRoles().join(', ')}`);
     } else {
       console.log(`${this.name} ${this.lastName} usuario registrado`);
     }
   }
-
-
 }
 
 module.exports = User;

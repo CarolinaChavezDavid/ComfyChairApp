@@ -12,7 +12,7 @@ class Conference {
         this.tracks = []
     }
 
-    createTrack(track) {
+    /*createTrack(track) {
         this.tracks.push(track)
     }
 
@@ -23,13 +23,14 @@ class Conference {
         }
         publication.leadAuthor = this.updateUserAsAuthor(publication.leadAuthor)
         track.submitPublication(publication)
-    }
+    }*/
 
     updateUserAsAuthor(user) {
-        if (!user.roles.has('author')) {
-            return new AuthorRole(user)
+        if (!user.hasRole('author')) {  // Cambiado para usar el método hasRole del User
+            return new AuthorRole(user);
         }
     }
+ 
 
     isUserRegistered(user) {
         for (let i = 0; i < this.users.length; i++) {
@@ -59,9 +60,7 @@ class Conference {
     }
 
     getTracksInfo() {
-        this.tracks.forEach((item) => {
-            item.getTrackInfo()
-        })
+        return this.tracks.map(track => track.getTrackInfo());
     }
 
     createTrack(type, topic, selectionMethod, user) {
