@@ -1,15 +1,12 @@
+const Constants = require('../utils/Constants');
 const UserRoleDecorator = require('./UserRoleDecorator'); 
 
 class AuthorRole extends UserRoleDecorator {
     constructor(user) {
       super(user);
-      this.addRole('author');
+      this.addRole(Constants.USER_ROLE.AUTHOR);
     }
-  
-    submitArticle(article) {
-      console.log(`${this.user.name} submitted article: ${article}`);
-    }
-  
+
     getUserInfo() {
       super.getUserInfo();
       console.log(`${this.user.name} puede enviar articulos.`);

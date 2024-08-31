@@ -1,9 +1,10 @@
+const Constants = require('../utils/Constants');
 const UserRoleDecorator = require('./UserRoleDecorator'); 
 
 class ChairRole extends UserRoleDecorator {
     constructor(user) {
       super(user);
-      this.addRole('chair');
+      this.addRole(Constants.USER_ROLE.CHAIR);
     }
   
     organizeConference(conference) {
