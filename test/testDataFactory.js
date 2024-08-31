@@ -1,9 +1,10 @@
 const User = require('../user/User');
 const Conference = require('../Conference');
-const RegularTrack = require('../track/RegularTrack');
-const WorkshopTrack = require('../track/WorkshopTrack');
-const PosterTrack = require('../track/PosterTrack');
+const RegularTrack = require('../track/model/RegularTrack');
+const WorkshopTrack = require('../track/model/WorkshopTrack');
+const PosterTrack = require('../track/model/PosterTrack');
 const Publication = require('../publication/Publication');
+const Author =  require('../user/AuthorRole')
 
 class TestDataFactory {
 
@@ -13,10 +14,15 @@ class TestDataFactory {
         return user
     }
 
-    static createUserFer() {
-        const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456','UNLP');
-        user.addRole('author'); 
+    static createUser() {
+        const user = new User('Carolina', 'Chavez', 'scchavezd@gmail.com', 'password123', 'UNLP');
         return user
+    }
+
+    static createUserFerAuthor() {
+        const user = new User('Fernando', 'Corinaldesi', 'corinaldesifernando@gmail.com', 'fer123456','UNLP');
+        const authorUser = new Author(user)
+        return authorUser
     }
 
     static createUserFerChair() {
