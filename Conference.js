@@ -60,9 +60,7 @@ class Conference {
     }
 
     getTracksInfo() {
-        this.tracks.forEach((item) => {
-           console.log(item)
-        })
+        return this.tracks.map(track => track.getTrackInfo());
     }
 
     createTrack(type, topic, selectionMethod, user) {
