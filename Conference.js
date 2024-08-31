@@ -26,10 +26,11 @@ class Conference {
     }
 
     updateUserAsAuthor(user) {
-        if (!user.roles.has('author')) {
-            return new AuthorRole(user)
+        if (!user.hasRole('author')) {  // Cambiado para usar el método hasRole del User
+            return new AuthorRole(user);
         }
     }
+ 
 
     isUserRegistered(user) {
         for (let i = 0; i < this.users.length; i++) {
