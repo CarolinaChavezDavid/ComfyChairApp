@@ -5,6 +5,8 @@ const RegularPublication =  require('../publication/RegularPublication')
 const User =  require('../user/User')
 const Conference =  require('../Conference')
 const ChairRole =  require('../user/ChairRole')
+const waitFor = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 describe('Conference', () => {
     let conference;
     let user;
@@ -57,14 +59,16 @@ describe('Conference', () => {
         expect(foundTrack).toBeUndefined();
     });
 
-    test('Debería lanzar un error si el usuario no tiene el rol de chair', () => {
+    test('Debería lanzar un error si el usuario no tiene el rol de chair', async () => {
         conference.registerUser(user);
         expect(() => conference.createTrack('regular', 'Machine Learning', selectionMethod, user))
             .toThrow('Solo los organizadores pueden crear sesiones.');
+            await waitFor(3000);
+
     });
 
 
-    test('Debería agregar la publicación al track correcto', () => {
+    test('Debería agregar la publicación al track correcto', async () => {
 
         let caroUser = new User('Carolina', 'Chavez', 'scchavezd@gmail.com', 'password123', 'UNLP')
         caroUser = new ChairRole(caroUser)
@@ -80,7 +84,17 @@ describe('Conference', () => {
         )
 
         machineLearningTrack.submitPublication(regularAIPublication, caroUser)
+        machineLearningTrack.receptionState.cleanup();
         expect(machineLearningTrack.publications).toContain(regularAIPublication);
 
     });
+
+    afterEach(() => {
+        if (track.receptionState) {
+          track.receptionState.cleanup();
+        }
+        if (track.biddingState) {
+          track.biddingState.cleanup();
+        }
+      });
 });
