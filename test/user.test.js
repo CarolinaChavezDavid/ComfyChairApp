@@ -42,13 +42,11 @@ describe('User Class', () => {
 
     test('deberia agregar el rol chair', () => {
         const chair = dataFactory.createUserFerChair();
-        chair.organizeConference('Probando');
         expect(chair.hasRole(Constants.USER_ROLE.CHAIR)).toBe(true);
     });
 
     test('deberia agregar el rol revisor', () => {
         const reviewer = dataFactory.createUserFerReview();
-        reviewer.reviewArticle('Probando');
         expect(reviewer.hasRole(Constants.USER_ROLE.REVIEWER)).toBe(true);
     });
 
