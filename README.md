@@ -29,7 +29,8 @@ La implementación de publicaciones en la aplicación se baso unicamente en here
 
 ### Test Coverage
 
-![image](https://github.com/user-attachments/assets/ce9efccc-9ca6-4a2d-a0d6-6f33ab483e28)
+![image](https://github.com/user-attachments/assets/329732cf-f069-4219-84a3-12ce64bc4444)
+
 
 
 
