@@ -6,13 +6,22 @@ class BiddingState extends TrackState {
         super(track)
         this.deadline = deadline
         this.track = track
+        this.timeoutId = null;  // Añadir una propiedad para el ID del temporizador
     }
 
     init() {
-        setTimeout(() => {
+        this.timeoutId = setTimeout(() => {
             console.log(`La sesion "${this.track.topic}" ha pasado al estado de Asignacion.`);
-            this.track.setState(this.track.assigmentState)
+            this.track.setState(this.track.assigmentState);
         }, this.deadline);
+    }
+
+    // Añadir un método para limpiar el temporizador
+    cleanup() {
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
     }
 
     submitBid(publication, interestLevel, reviewer) {
