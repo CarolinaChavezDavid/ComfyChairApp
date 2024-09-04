@@ -27,8 +27,11 @@ La implementación de publicaciones en la aplicación se baso unicamente en here
 <img width="1090" alt="image" src="https://github.com/user-attachments/assets/144356e1-ffa1-4580-9539-3a29a9f4fcaf">
 
 
+### Test Coverage
+
+![image](https://github.com/user-attachments/assets/ce9efccc-9ca6-4a2d-a0d6-6f33ab483e28)
 
 
 
 
-* suposiciones: se establece un tiempo de duracion para la etapa de recepcion de cada sesion, para fines practicos a la hora de testear se supone que el tiempo de recepcion es de 30 segndos
+

@@ -69,5 +69,12 @@ describe('Track', () => {
          track.setState(new ReceptionState(track, 3000)); // Cambia el estado
          expect(() => track.submitBid(publication, Constants.INTEREST_LEVEL.INTERESTED, userRev)).toThrowError('El usuario Fer  no esta registrado en la conferencia.');
      });
- 
+
+     afterEach(() => {
+        // Limpieza de todos los temporizadores
+        if (track.currentState && typeof track.currentState.cleanup === 'function') {
+            track.currentState.cleanup();
+        }
+    });
+     
 });

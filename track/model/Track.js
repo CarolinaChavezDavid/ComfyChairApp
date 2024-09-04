@@ -21,8 +21,11 @@ class Track {
   }
 
   setState(state) {
+    if (this.currentState && typeof this.currentState.cleanup === 'function') {
+      this.currentState.cleanup();  // Limpiar el temporizador del estado anterior
+    }
     this.currentState = state;
-    this.currentState.init()
+    this.currentState.init();
   }
 
   getReviewers() {
@@ -89,7 +92,7 @@ class Track {
     throw new Error("El método 'isPublicationAvailableType()' debe ser implementado.");
   }
 
-  finalizeTrack(){
+  finalizeTrack() {
     console.log(`La organización de la sesión "${this.topic}" ha finalizado`)
   }
 
