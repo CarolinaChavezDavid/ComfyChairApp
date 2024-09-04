@@ -9,7 +9,7 @@ const User = require('../user/User');
 const Review = require('../publication/Review');
 const DataFactory = require('./testDataFactory');
 
-describe('Publication and Subclasses', () => {
+describe('Publication', () => {
     
     let publication, poster, regular, user;
 
