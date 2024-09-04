@@ -1,13 +1,9 @@
 const User = require('../user/User');
 const Conference = require('../Conference');
 const RegularTrack = require('../track/model/RegularTrack');
-const WorkshopTrack = require('../track/model/WorkshopTrack');
-const PosterTrack = require('../track/model/PosterTrack');
-const Publication = require('../publication/Publication');
 const Author = require('../user/AuthorRole')
 const Chair = require('../user/ChairRole')
 const Review = require('../user/ReviewerRole')
-const RegularPublication = require('../publication/RegularPublication')
 
 
 class TestDataFactory {
