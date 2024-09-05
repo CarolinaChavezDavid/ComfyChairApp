@@ -10,19 +10,16 @@ La clase **'ConfyChairApp'** está diseñada para gestionar la aplicación de ge
 
 <img width="918" alt="image" src="https://github.com/user-attachments/assets/486838b2-1967-45a1-a020-45ab34b37038">
 
-### Conferencia
+### 🎓 Conferencia
 La clase **'Conferencia'** gestiona la creación de sesiones dentro de una conferencia y realiza un seguimiento de los usuarios registrados. También permite el registro de usuarios y el envío de publicaciones.
 
 <img width="1037" alt="image" src="https://github.com/user-attachments/assets/110c9166-594b-47af-9cd9-09f3d34ed4d4">
 
 ### ⏱️ Sesiones
+La clase Track representa una sesión o "track" en una conferencia donde se envían, revisan y seleccionan publicaciones (artículos y posters). Para la creación de los tracks se utiliza el patron factory 🏭, implementado desde el método *'CreateTrack()'* en la clase **'Conferencia'**, luego para el método de selección elegido para cada track se usa el patrón strategy 🧱, para obtener las implementaciones partículares de los distintos métodos y la posibilidad de crear nuevos métodos a futuro. Para el manejo de las diferentes etapas o estados dentro de cada track ('Reception', 'Bidding', 'Assigment', 'Review', 'Selection') se utiliza el patrón state ⏲️.
 
 <img width="835" alt="image" src="https://github.com/user-attachments/assets/f80f8e36-3dad-418e-8511-248841717fda">
 
-
-* #### ⏱️ Creación de Sesiones - 🏭 Factory pattern
-* #### ⏱️ Etapas de Sesiones - ⏲️ State pattern
-* #### Criterios de aceptación - 🧱 Strategy pattern
   
 ### 👤Usuarios - 🪆Decorator pattern
 Se opta por usar el patrón Decorador para añadir funcionalidades dinámicamente a los diferentes roles de los usuarios sin modificar la estructura base del usuario. Cada decorador (Reviewer, Chair, Author) envuelve la estructura original del usuario y permite añadir nuevas funcionalidades y atributos específicos para cada rol.
