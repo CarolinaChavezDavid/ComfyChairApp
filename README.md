@@ -8,14 +8,17 @@ La clase  es creada para centralizar
 
 La clase **'ConfyChairApp'** está diseñada para gestionar la aplicación de gestión de conferencias. Sirve como punto central para manegar los registros de usuarios y crear conferencias.
 
-<img width="1306" alt="image" src="https://github.com/user-attachments/assets/2daa767a-1caa-4331-8590-50c78d68f11a">
+<img width="918" alt="image" src="https://github.com/user-attachments/assets/486838b2-1967-45a1-a020-45ab34b37038">
 
 ### Conferencia
 La clase **'Conferencia'** gestiona la creación de sesiones dentro de una conferencia y realiza un seguimiento de los usuarios registrados. También permite el registro de usuarios y el envío de publicaciones.
 
-<img width="988" alt="image" src="https://github.com/user-attachments/assets/b615f34f-3384-4adc-a619-3c6da12a1e3e">
+<img width="1037" alt="image" src="https://github.com/user-attachments/assets/110c9166-594b-47af-9cd9-09f3d34ed4d4">
 
 ### ⏱️ Sesiones
+
+<img width="835" alt="image" src="https://github.com/user-attachments/assets/f80f8e36-3dad-418e-8511-248841717fda">
+
 
 * #### ⏱️ Creación de Sesiones - 🏭 Factory pattern
 * #### ⏱️ Etapas de Sesiones - ⏲️ State pattern
@@ -28,7 +31,8 @@ Se opta por usar el patrón Decorador para añadir funcionalidades dinámicament
 ### 📑 Publicaciones
 La implementación de publicaciones en la aplicación se baso unicamente en herencia, permitiendo que las subclases **'PosterPublication'** y **'RegularPublication'** hereden todos los atributos y métodos de la clase padre **'Publication'** promoviendo la reutilización de código y estableciendo una jerarquía entre clases. Luego de que publicaciónes son creada, solo pueden ser enviadas en el estado de recepción de una sesión, a partir de ese momento son realizadas las validación establecidas en los requerimientos de la apliación y pasan por diferentes estados: *'Draft'* cuando son creadas por primera vez en la aplicaión, *'InReview'* cuando se envia a la sesión, *'Rejected'* en caso de que no cumpla con alguna validación o cuando en la etapa de selección de la sesión no dentra detro del criterio de aceptación y por último *'Approved'* en caso de que sea aceptada en la sesión de la conferencia a la que fue enviada. Durante la etapa asignación de la sesión, se asignan los revisores a la publicación y en el estado de revisión se le envian **'Reviews'**.
 
-<img width="1090" alt="image" src="https://github.com/user-attachments/assets/144356e1-ffa1-4580-9539-3a29a9f4fcaf">
+<img width="755" alt="image" src="https://github.com/user-attachments/assets/ae011a7c-7832-405e-b232-46db0251acff">
+
 
 
 ### Test Coverage
