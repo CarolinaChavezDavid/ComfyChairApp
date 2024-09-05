@@ -11,6 +11,10 @@ La clase **'ConfyChairApp'** está diseñada para gestionar la aplicación de ge
 <img width="1306" alt="image" src="https://github.com/user-attachments/assets/2daa767a-1caa-4331-8590-50c78d68f11a">
 
 ### Conferencia
+La clase **'Conferencia'** gestiona la creación de sesiones dentro de una conferencia y realiza un seguimiento de los usuarios registrados. También permite el registro de usuarios y el envío de publicaciones.
+
+<img width="988" alt="image" src="https://github.com/user-attachments/assets/b615f34f-3384-4adc-a619-3c6da12a1e3e">
+
 ### ⏱️ Sesiones
 
 * #### ⏱️ Creación de Sesiones - 🏭 Factory pattern
