@@ -12,25 +12,11 @@ class Conference {
         this.tracks = []
     }
 
-    /*createTrack(track) {
-        this.tracks.push(track)
-    }
-
-    submitPublicationToTrack(topic, publication) {
-
-        if (!track) {
-            throw new Error(`La sesion "${topic}" no fue encontrada en la conferencia "${this.field}".`);
-        }
-        publication.leadAuthor = this.updateUserAsAuthor(publication.leadAuthor)
-        track.submitPublication(publication)
-    }*/
-
     updateUserAsAuthor(user) {
-        if (!user.hasRole('author')) {  // Cambiado para usar el método hasRole del User
+        if (!user.hasRole('author')) {
             return new AuthorRole(user);
         }
     }
- 
 
     isUserRegistered(user) {
         for (let i = 0; i < this.users.length; i++) {
