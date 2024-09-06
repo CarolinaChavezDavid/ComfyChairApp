@@ -4,8 +4,6 @@
 ## Estructura
 
 ### 💻ConfyChairApp 
-La clase  es creada para centralizar 
-
 La clase **'ConfyChairApp'** está diseñada para gestionar la aplicación de gestión de conferencias. Sirve como punto central para manegar los registros de usuarios y crear conferencias.
 
 <img width="918" alt="image" src="https://github.com/user-attachments/assets/486838b2-1967-45a1-a020-45ab34b37038">
