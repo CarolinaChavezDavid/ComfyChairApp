@@ -24,8 +24,8 @@ let user8 = new User('Diego', 'Gómez', 'diego.gomez@gmail.com', 'password105', 
 let user9 = new User('Sofía', 'Díaz', 'sofia.diaz@gmail.com', 'password106', 'UCA')
 
 let AIconference = new Conference('Artifitial Intelligence')
-caroUser = new ReviewerRole(caroUser)
 caroUser = new ChairRole(caroUser)
+caroUser = new ReviewerRole(caroUser)
 user1 = new ReviewerRole(user1)
 user2 = new ReviewerRole(user2)
 user3 = new ReviewerRole(user3)
