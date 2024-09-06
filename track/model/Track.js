@@ -13,7 +13,7 @@ class Track {
     this.users = [];
 
     this.receptionState = new ReceptionState(this, 10000);
-    this.biddingState = new BiddingState(this, 3000);
+    this.biddingState = new BiddingState(this, 10000);
     this.assigmentState = new AssigmentState(this);
     this.revisionState = new RevisionState(this);
     this.selectionState = new SelectionState(this);

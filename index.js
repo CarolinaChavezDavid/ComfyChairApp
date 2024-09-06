@@ -106,25 +106,31 @@ setTimeout(() => {
 
 machineLearningTrack.getTrackInfo()
 
-
-
-/**setTimeout(() => {
+setTimeout(() => {
     machineLearningTrack.submitBid(regularAIPublication1, 'maybe', caroUser)
     machineLearningTrack.submitBid(regularAIPublication2, 'interested', user1)
     machineLearningTrack.submitBid(regularAIPublication3, 'notInterested', user1)
+}, 12000)
+
+setTimeout(() => {
     machineLearningTrack.submitBid(regularAIPublication4, 'maybe', user2)
     machineLearningTrack.submitBid(regularAIPublication1, 'interested', user3)
     machineLearningTrack.submitBid(regularAIPublication, 'interested', caroUser)
+}, 14000)
+
+setTimeout(() => {
     machineLearningTrack.submitBid(regularAIPublication2, 'interested', user3)
     machineLearningTrack.submitBid(regularAIPublication3, 'interested', user3)
     machineLearningTrack.submitBid(regularAIPublication2, 'notInterested', user4)
     machineLearningTrack.submitBid(regularAIPublication3, 'maybe', user5)
     machineLearningTrack.getTrackInfo()
+}, 16000)
 
-}, 13000);
 
 
-setTimeout(() => {
+
+
+/**setTimeout(() => {
     machineLearningTrack.submitReview(regularAIPublication1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
     machineLearningTrack.submitReview(regularAIPublication2, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
     machineLearningTrack.submitReview(regularAIPublication3, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user5)
