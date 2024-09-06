@@ -20,6 +20,7 @@ La clase Track representa una sesión o "track" en una conferencia donde se env�
 
 <img width="835" alt="image" src="https://github.com/user-attachments/assets/f80f8e36-3dad-418e-8511-248841717fda">
 
+ReceptionState extiende de TrackState y añade nuevo comportamiento para manjear la recepción de aplicaciones y deadlines r
   
 ### 👤Usuarios - 🪆Decorator pattern
 Se opta por usar el patrón Decorador para añadir funcionalidades dinámicamente a los diferentes roles de los usuarios sin modificar la estructura base del usuario. Cada decorador (Reviewer, Chair, Author) envuelve la estructura original del usuario y permite añadir nuevas funcionalidades y atributos específicos para cada rol.
