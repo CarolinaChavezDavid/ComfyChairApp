@@ -18,9 +18,14 @@ La clase Track representa una sesión o "track" en una conferencia donde se env�
 
 <img width="835" alt="image" src="https://github.com/user-attachments/assets/f80f8e36-3dad-418e-8511-248841717fda">
 
+<img width="1107" alt="image" src="https://github.com/user-attachments/assets/b0a3cda3-2bb2-4727-be04-ba6b3bee92b1">
+
+
 * **ReceptionState** extiende de TrackState y añade nuevo comportamiento para manjear la recepción de aplicaciones y deadlines y maneja la transición al BiddingState.
 * **BiddingState** extiende de TrackState y añade nuevo comportamiento para manjear el envio de bids por parte de los revisores y maneja la transición al AssigmentState.
 * **AssigmentState** extiende de TrackState y añade nuevo comportamiento para asignar los artículos a los revisores basado en los bids asignados en la etapa anterior, luego de la asignación maneja la transición al ReviewState.
+* **ReviewState** extiende de TrackState y añade nuevo comportamiento para manejar la revisión de los artículos, valida periodicamente si los revisores completaron sus reviews, en el caso contrario los notifica para que las completen, luego de que se han enviado todas las revisiones maneja la transición al SelectionState.
+* **SelectionState** extiende de TrackState y añade nuevo comportamiento para seleccionar las publicaciones de acuerdo al método que se establecio a la hora de crear el track. Luego finaliza el estado del track.
   
 ### 👤Usuarios - 🪆Decorator pattern
 Se opta por usar el patrón Decorador para añadir funcionalidades dinámicamente a los diferentes roles de los usuarios sin modificar la estructura base del usuario. Cada decorador (Reviewer, Chair, Author) envuelve la estructura original del usuario y permite añadir nuevas funcionalidades y atributos específicos para cada rol.
