@@ -21,7 +21,7 @@ class Constants {
 
     static get PUBLICATION_STATE() {
         return {
-            DRAFT: "poster",
+            DRAFT: "draft",
             IN_REVIEW: "inReview",
             SELECTED: "selected",
             REJECTED: "rejected"

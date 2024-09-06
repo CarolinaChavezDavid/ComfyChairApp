@@ -90,15 +90,25 @@ const regularAIPublicationError = new RegularPublication(
     user9,
     null
 );
-
-machineLearningTrack.submitPublication(regularAIPublication1, user6)
-machineLearningTrack.submitPublication(regularAIPublication2, user7)
-machineLearningTrack.submitPublication(regularAIPublication3, user8)
-machineLearningTrack.submitPublication(regularAIPublication4, user9)
-machineLearningTrack.submitPublication(regularAIPublicationError, user9)
-
+setTimeout(() => {
+    machineLearningTrack.submitPublication(regularAIPublication1, user6)
+    machineLearningTrack.submitPublication(regularAIPublication2, user7)
+}, 2000);
 
 setTimeout(() => {
+    machineLearningTrack.submitPublication(regularAIPublication3, user8)
+    machineLearningTrack.submitPublication(regularAIPublication4, user9)
+}, 4000);
+
+setTimeout(() => {
+    machineLearningTrack.submitPublication(regularAIPublicationError, user9)
+}, 6000);
+
+machineLearningTrack.getTrackInfo()
+
+
+
+/**setTimeout(() => {
     machineLearningTrack.submitBid(regularAIPublication1, 'maybe', caroUser)
     machineLearningTrack.submitBid(regularAIPublication2, 'interested', user1)
     machineLearningTrack.submitBid(regularAIPublication3, 'notInterested', user1)
@@ -111,7 +121,7 @@ setTimeout(() => {
     machineLearningTrack.submitBid(regularAIPublication3, 'maybe', user5)
     machineLearningTrack.getTrackInfo()
 
-}, 3000);
+}, 13000);
 
 
 setTimeout(() => {
@@ -133,4 +143,4 @@ setTimeout(() => {
 
 setTimeout(() => {
     machineLearningTrack.submitReview(regularAIPublication2, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
-}, 30000);
+}, 30000);**/
