@@ -22,7 +22,13 @@ La clase Track representa una sesión o "track" en una conferencia donde se env�
 
 
 * **ReceptionState** extiende de TrackState y añade nuevo comportamiento para manjear la recepción de aplicaciones y deadlines y maneja la transición al BiddingState.
-  > *Nota:* Para este estado se supone un deadline de 30 seg con el proposito de simular el deadline, durante este tiempo se permite el envio de publicaciones, estas son validadas de acuerdo a los requerimientos, si cumplen con las validaciones pasan del estado 'draft' a 'inReview', en el caso de no cumplir pasa al estado 'rejected' y no avanzan en el proceso. Luego de los 30 seg de deadline el track avanza al siguiente estado.
+  > *Nota:* Para este estado se supone un deadline de 10 seg con el proposito de simular el deadline, durante este tiempo se permite el envio de publicaciones, estas son validadas de acuerdo a los requerimientos, si cumplen con las validaciones pasan del estado 'draft' a 'inReview', en el caso de no cumplir pasa al estado 'rejected' y no avanzan en el proceso. Luego de los 10 seg de deadline el track avanza al siguiente estado.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0c64e755-8320-4ed8-88c0-814f6e472828" alt="GIF" width="800" />
+  <img src="https://github.com/user-attachments/assets/e0092498-c7a2-4715-ae72-8af70cec0e9e" alt="Image" width="600" />
+</p>
+
 
 * **BiddingState** extiende de TrackState y añade nuevo comportamiento para manjear el envio de bids por parte de los revisores y maneja la transición al AssigmentState.
 * **AssigmentState** extiende de TrackState y añade nuevo comportamiento para asignar los artículos a los revisores basado en los bids asignados en la etapa anterior, luego de la asignación maneja la transición al ReviewState.
