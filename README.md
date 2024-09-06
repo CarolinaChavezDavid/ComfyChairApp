@@ -1,5 +1,7 @@
 # ComfyChairApp
 
+Aplicación para la organización de conferencias científicas.
+
 ## Estructura
 
 ### 💻ConfyChairApp 
