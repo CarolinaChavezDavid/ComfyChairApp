@@ -22,15 +22,21 @@ La clase Track representa una sesión o "track" en una conferencia donde se env�
 
 
 * **ReceptionState** extiende de TrackState y añade nuevo comportamiento para manjear la recepción de aplicaciones y deadlines y maneja la transición al BiddingState.
-  > *Nota:* Para este estado se supone un deadline de 10 seg con el proposito de simular el deadline, durante este tiempo se permite el envio de publicaciones, estas son validadas de acuerdo a los requerimientos, si cumplen con las validaciones pasan del estado 'draft' a 'inReview', en el caso de no cumplir pasa al estado 'rejected' y no avanzan en el proceso. Luego de los 10 seg de deadline el track avanza al siguiente estado.
+  > ***Nota:** Para este estado se supone un deadline de 10 seg con el proposito de simular el deadline, durante este tiempo se permite el envio de publicaciones, estas son validadas de acuerdo a los requerimientos, si cumplen con las validaciones pasan del estado 'draft' a 'inReview', en el caso de no cumplir pasa al estado 'rejected' y no avanzan en el proceso. Luego de los 10 seg de deadline el track avanza al siguiente estado.*
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0c64e755-8320-4ed8-88c0-814f6e472828" alt="GIF" width="800" />
   <img src="https://github.com/user-attachments/assets/e0092498-c7a2-4715-ae72-8af70cec0e9e" alt="Image" width="600" />
 </p>
 
-
 * **BiddingState** extiende de TrackState y añade nuevo comportamiento para manjear el envio de bids por parte de los revisores y maneja la transición al AssigmentState.
+    > ***Nota:** Para este estado se supone un deadline de 10 seg con el proposito de simular el deadline para el envio de bids por parte de los revisores. Incialmente se les notifica a los revisores registrados en la app cuales publicaciones estan disponibles para enviar bids. Luego del tiempo establecido para el envio de bids  el track avanza al siguiente estado*
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/35ada343-e8d1-4b5b-89f7-11adeeba0f29" alt="GIF" width="800" />
+  <img src="https://github.com/user-attachments/assets/ed7e02c4-f5ed-450e-b4fa-2dac4a05d512" alt="Image" width="600" />
+</p>
+
 * **AssigmentState** extiende de TrackState y añade nuevo comportamiento para asignar los artículos a los revisores basado en los bids asignados en la etapa anterior, luego de la asignación maneja la transición al ReviewState.
 * **ReviewState** extiende de TrackState y añade nuevo comportamiento para manejar la revisión de los artículos, valida periodicamente si los revisores completaron sus reviews, en el caso contrario los notifica para que las completen, luego de que se han enviado todas las revisiones maneja la transición al SelectionState.
 * **SelectionState** extiende de TrackState y añade nuevo comportamiento para seleccionar las publicaciones de acuerdo al método que se establecio a la hora de crear el track. Luego finaliza el estado del track.
