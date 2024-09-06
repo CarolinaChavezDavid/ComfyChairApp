@@ -46,7 +46,7 @@ AIconference.registerUser(user9)
 AIconference.getConferenceInfo()
 let fixSetSelectionMethod = new FixSetMethod(0.5);
 let bestPublicationsSelectionMethod = new BestPublicationsMethod(2);
-let machineLearningTrack = AIconference.createTrack("regular", "Machine learning", bestPublicationsSelectionMethod, caroUser)
+let machineLearningTrack = AIconference.createTrack("regular", "Machine learning", fixSetSelectionMethod, caroUser)
 
 const posterAIPublication = new PosterPublication('IA en la salud', 'www.somewhere.com', caroUser)
 const regularAIPublication = new RegularPublication(
@@ -126,15 +126,11 @@ setTimeout(() => {
     machineLearningTrack.getTrackInfo()
 }, 16000)
 
-
-
-
-
-/**setTimeout(() => {
+setTimeout(() => {
     machineLearningTrack.submitReview(regularAIPublication1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
     machineLearningTrack.submitReview(regularAIPublication2, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user3)
     machineLearningTrack.submitReview(regularAIPublication3, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user5)
-}, 7000);
+}, 22000);
 
 setTimeout(() => {
     machineLearningTrack.submitReview(regularAIPublication1, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', caroUser)
@@ -145,8 +141,8 @@ setTimeout(() => {
     machineLearningTrack.submitReview(regularAIPublication4, -3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user2)
     machineLearningTrack.submitReview(regularAIPublication4, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user4)
     machineLearningTrack.submitReview(regularAIPublication4, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user5)
-}, 20000);
+}, 24000);
 
 setTimeout(() => {
     machineLearningTrack.submitReview(regularAIPublication2, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', user1)
-}, 30000);**/
+}, 30000)

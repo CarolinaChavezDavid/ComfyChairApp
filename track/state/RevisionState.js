@@ -76,7 +76,7 @@ class RevisionState extends TrackState {
     startReviewCheck() {
         this.interval = setInterval(() => {
             this.finalizeReviews();
-        }, 10000);
+        }, 3000);
     }
 
     // Método para limpiar el intervalo
